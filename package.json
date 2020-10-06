@@ -6,14 +6,15 @@
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "lint": "prettier --check \"src/**/*.{ts,js}\""
   },
-  "dependencies": {
-    "canvas-confetti": "^1.2.0"
-  },
   "devDependencies": {
     "@snowpack/plugin-run-script": "^2.1.5",
     "@snowpack/plugin-typescript": "^1.0.1",
-    "@types/canvas-confetti": "^1.0.0",
     "@types/snowpack-env": "^2.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-typescript": "^11.0.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-import": "^2.22.0",
     "prettier": "^2.0.5",
     "snowpack": "^2.13.3",
     "typescript": "^4.0.0"

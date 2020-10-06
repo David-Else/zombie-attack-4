@@ -1,0 +1,3 @@
+# temp partial fix until the vscode deno plugin works
+deps.ts
+test
