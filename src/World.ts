@@ -19,12 +19,9 @@ export class World {
     gameCanvas: Readonly<GameCanvas>,
     options: { numberOfZombies: number }
   ) {
-    this.entities = new Map<string, Entity[]>()
-      .set(
-        "hero",
-        createMultiple(1, () => heroFactory(gameCanvas.getMiddle()))
-      )
-      .set(
+    this.entities = new Map<string, Entity[]>([
+      ["hero", createMultiple(1, () => heroFactory(gameCanvas.getMiddle()))],
+      [
         "zombies",
         createMultiple(options.numberOfZombies, () =>
           zombieFactory(
@@ -33,13 +30,13 @@ export class World {
             gameCanvas.getMiddle(), // TODO SHOULD be hero.position somehow
             [0, 0]
           )
-        )
-      )
-      .set(
+        ),
+      ],
+      [
         "bullets",
-        createMultiple(1, () => bulletFactory(gameCanvas.getMiddle()))
-      )
-      .set(
+        createMultiple(1, () => bulletFactory(gameCanvas.getMiddle())),
+      ],
+      [
         "text",
         createMultiple(1, () =>
           textFactory({
@@ -47,13 +44,14 @@ export class World {
             velocity: [0, 0],
             rotation: 0,
             text: `Score:
-      Bullets left:`,
+    Bullets left:`,
             textAlignment: "right",
             fillStyle: "serif",
             font: "serif",
             fontSize: 32,
           })
-        )
-      );
+        ),
+      ],
+    ]);
   }
 }
