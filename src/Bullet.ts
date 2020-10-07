@@ -4,27 +4,21 @@ import type { GameCanvas, VectorDrawable } from "./Canvas";
 
 export class Bullet implements VectorDrawable {
   position;
-  target;
   velocity;
   rotation;
-  readonly fill;
-  readonly widthHeight;
+  readonly fill = "black";
+  readonly widthHeight: Vector2 = [15, 5];
   readonly directTowards;
   constructor(
     position: Vector2,
     target: Vector2,
-    velocity: Vector2 = [0, 0],
-    rotation = 33,
-    fill = "black",
-    widthHeight: Vector2 = [15, 5]
+    velocity: Vector2,
+    rotation: number
   ) {
     this.position = position;
-    this.target = target;
     this.velocity = velocity;
     this.rotation = rotation;
-    this.fill = fill;
-    this.widthHeight = widthHeight;
-    this.directTowards = new DirectTowardsable(target, 1); // in constructor!
+    this.directTowards = new DirectTowardsable(target, 1);
   }
 
   draw(gC: Readonly<GameCanvas>): void {

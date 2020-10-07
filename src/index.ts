@@ -27,8 +27,18 @@ export const gameCanvas = new GameCanvas(
  * Create entities
  */
 export const hero = heroFactory(gameCanvas.getMiddle());
-const zombies = createMultipleInstantiatedClasses(4, zombieFactory);
-const bullets = createMultipleInstantiatedClasses(1, bulletFactory);
+// PROBLEM it is not running random properly as only used once! HOW?! It is random somehow
+const zombies = createMultipleInstantiatedClasses(44, () =>
+  zombieFactory(
+    gameCanvas.getMiddle(),
+    gameCanvas.getWidthHeight(),
+    hero.position,
+    [0, 0]
+  )
+);
+const bullets = createMultipleInstantiatedClasses(1, () =>
+  bulletFactory(gameCanvas.getMiddle())
+);
 const onScreenText = textFactory({
   position: [190, 50],
   velocity: [0, 0],
@@ -38,7 +48,7 @@ const onScreenText = textFactory({
   textAlignment: "right",
   fillStyle: "'serif'",
   font: "'serif'",
-  fontSize: 92,
+  fontSize: 42,
 });
 
 /**

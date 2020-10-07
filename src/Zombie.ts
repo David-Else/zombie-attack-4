@@ -11,7 +11,7 @@ export class Zombie implements VectorDrawable {
   widthHeight: Vector2 = [15, 15];
   private readonly directTowards;
 
-  constructor(position: Vector2, target: Vector2, velocity: Vector2 = [0, 0]) {
+  constructor(position: Vector2, target: Vector2, velocity: Vector2) {
     this.position = position;
     this.target = target;
     this.velocity = velocity;
