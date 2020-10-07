@@ -1,6 +1,6 @@
 export type Vector2 = [number, number];
 
-export function createMultipleInstantiatedClasses<T>(
+export function createMultiple<T>(
   numberOfClasses: number,
   factory: () => T
 ): T[] {

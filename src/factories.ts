@@ -4,7 +4,6 @@ import { Hero } from "./entities/Hero";
 import { Zombie } from "./entities/Zombie";
 import { Texty } from "./entities/Text";
 import { Bullet } from "./entities/Bullet";
-// import { gameCanvas } from "./index";
 
 function calculateRandomPositionAroundPoint(
   centrePoint: Readonly<Vector2>,
@@ -23,7 +22,6 @@ function calculateRandomPositionAroundPoint(
 /**
  * Factories for entities
  */
-// each factory should accept any usable parameter from the actual class!
 export function heroFactory(position: Vector2): Hero {
   return new Hero(position);
 }
@@ -48,7 +46,6 @@ export function zombieFactory(
     velocity
   );
   // perform zombie setup needed after instantiation
-  // add images
   return zombie;
 }
 
