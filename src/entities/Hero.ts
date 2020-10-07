@@ -1,6 +1,6 @@
-import type { GameCanvas, VectorDrawable } from "./Canvas";
-import type { Vector2 } from "./helperFunctions";
-import { KeyboardInputable } from "./components/KeyboardInputable";
+import type { GameCanvas, VectorDrawable } from "../Canvas";
+import type { Vector2 } from "../helperFunctions";
+import { KeyboardInputable } from "../components/KeyboardInputable";
 
 export class Hero implements VectorDrawable {
   readonly position;

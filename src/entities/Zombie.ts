@@ -1,6 +1,6 @@
-import { DirectTowardsable } from "./components/DirectTowardsable";
-import type { Vector2 } from "./helperFunctions";
-import type { GameCanvas, VectorDrawable } from "./Canvas";
+import { DirectTowardsable } from "../components/DirectTowardsable";
+import type { Vector2 } from "../helperFunctions";
+import type { GameCanvas, VectorDrawable } from "../Canvas";
 
 export class Zombie implements VectorDrawable {
   position;

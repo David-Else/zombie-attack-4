@@ -1,4 +1,4 @@
-import type { GameCanvas, TextDrawable } from "./Canvas";
+import type { GameCanvas, TextDrawable } from "../Canvas";
 
 export class Texty implements TextDrawable {
   position;

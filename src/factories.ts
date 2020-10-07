@@ -1,9 +1,9 @@
 import type { TextDrawable } from "./Canvas";
 import type { Vector2 } from "./helperFunctions";
-import { Hero } from "./Hero";
-import { Zombie } from "./Zombie";
-import { Texty } from "./Text";
-import { Bullet } from "./Bullet";
+import { Hero } from "./entities/Hero";
+import { Zombie } from "./entities/Zombie";
+import { Texty } from "./entities/Text";
+import { Bullet } from "./entities/Bullet";
 // import { gameCanvas } from "./index";
 
 function calculateRandomPositionAroundPoint(
