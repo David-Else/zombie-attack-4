@@ -10,7 +10,7 @@ module.exports = {
     project: "./tsconfig.json",
   },
   rules: {
-    "@typescript-eslint/prefer-readonly-parameter-types": "error",
+    // "@typescript-eslint/prefer-readonly-parameter-types": "error",
     "no-console": "off",
     "import/prefer-default-export": "off",
     "import/no-default-export": "error",

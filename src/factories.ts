@@ -27,8 +27,7 @@ export function heroFactory(position: Vector2): Hero {
 }
 
 export function bulletFactory(position: Vector2): Bullet {
-  const bullet = new Bullet(position, [0, 0], [0, 0], 1);
-  return bullet;
+  return new Bullet(position, [0, 0], [0, 0], 1);
 }
 
 export function zombieFactory(
@@ -45,7 +44,7 @@ export function zombieFactory(
     target,
     velocity
   );
-  // perform zombie setup needed after instantiation
+  // perform async zombie setup needed after instantiation
   return zombie;
 }
 

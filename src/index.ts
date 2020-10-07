@@ -11,7 +11,7 @@ export const gameCanvas = new GameCanvas(
       [window.innerWidth, window.innerWidth / ratio]
 );
 
-const world = new World(gameCanvas);
+const world = new World(gameCanvas, { numberOfZombies: 100 });
 
 /**
  * Game loop

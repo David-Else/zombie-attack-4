@@ -15,7 +15,10 @@ interface Entity {
 export class World {
   entities;
 
-  constructor(gameCanvas: Readonly<GameCanvas>) {
+  constructor(
+    gameCanvas: Readonly<GameCanvas>,
+    options: { numberOfZombies: number }
+  ) {
     this.entities = new Map<string, Entity[]>();
     this.entities
       .set(
@@ -24,11 +27,11 @@ export class World {
       )
       .set(
         "zombies",
-        createMultiple(44, () =>
+        createMultiple(options.numberOfZombies, () =>
           zombieFactory(
             gameCanvas.getMiddle(),
             gameCanvas.getWidthHeight(),
-            gameCanvas.getMiddle(), // SHOULD be hero
+            gameCanvas.getMiddle(), // TODO SHOULD be hero.position somehow
             [0, 0]
           )
         )
@@ -47,8 +50,8 @@ export class World {
             text: `Score:
       Bullets left:`,
             textAlignment: "right",
-            fillStyle: "'serif'",
-            font: "'serif'",
+            fillStyle: "serif",
+            font: "serif",
             fontSize: 32,
           })
         )
