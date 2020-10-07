@@ -19,8 +19,7 @@ export class World {
     gameCanvas: Readonly<GameCanvas>,
     options: { numberOfZombies: number }
   ) {
-    this.entities = new Map<string, Entity[]>();
-    this.entities
+    this.entities = new Map<string, Entity[]>()
       .set(
         "hero",
         createMultiple(1, () => heroFactory(gameCanvas.getMiddle()))
