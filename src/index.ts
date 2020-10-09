@@ -25,7 +25,7 @@ function gameLoop(): void {
       entity.draw(gameCanvas);
     });
   });
-  world.checkCollision("zombies", "bullets");
+  world.checkCollision();
 }
 
 gameLoop();

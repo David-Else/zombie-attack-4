@@ -46,12 +46,6 @@ export function checkCollision(
   );
 }
 
-/**
- * =============================================================================
- * Zombie bullet collision handler
- * =============================================================================
- */
-
 export class World {
   entities;
 
@@ -114,19 +108,30 @@ export class World {
   zombieBulletCollisionHandler = (index: number, index2: number): void => {
     let zombies = this.entities.get("zombies");
     let bullets = this.entities.get("bullets");
-    console.log(`hit!!!! ${index} ${index2}`);
+    console.log(`zombie hit!!!! ${index} ${index2}`);
     zombies?.splice(index, 1);
     bullets?.splice(index2, 1);
-    // this.entities.zombies.splice(index, 1);
-    // this.entities.bullets.splice(indexTwo, 1);
+  };
+
+  heroZombieCollisionHandler = (index: number, index2: number): void => {
+    let zombies = this.entities.get("zombies");
+    let hero = this.entities.get("hero");
+    console.log(`hero hit!!!! ${index} ${index2}`);
+    hero?.splice(index, 1);
+    // lives -1
   };
 
   // eslint-disable-next-line class-methods-use-this
-  checkCollision(entityGroup1: EntityKeys, entityGroup2: EntityKeys): void {
+  checkCollision(): void {
     this.checkIfGroupsColliding(
-      this.entities.get(entityGroup1) as Entity[],
-      this.entities.get(entityGroup2) as Entity[],
+      this.entities.get("zombies") as Entity[],
+      this.entities.get("bullets") as Entity[],
       this.zombieBulletCollisionHandler
+    );
+    this.checkIfGroupsColliding(
+      this.entities.get("hero") as Entity[],
+      this.entities.get("zombies") as Entity[],
+      this.heroZombieCollisionHandler
     );
   }
 }
