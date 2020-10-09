@@ -9,6 +9,7 @@ export class Texty implements TextDrawable {
   rotation;
   font;
   fontSize;
+  widthHeight;
 
   constructor(text: Omit<TextDrawable, "draw">) {
     this.position = text.position;
@@ -19,6 +20,7 @@ export class Texty implements TextDrawable {
     this.rotation = text.rotation;
     this.font = text.font;
     this.fontSize = text.fontSize;
+    this.widthHeight = text.widthHeight;
   }
 
   draw(gC: Readonly<GameCanvas>): void {

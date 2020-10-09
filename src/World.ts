@@ -10,13 +10,10 @@ import type { GameCanvas } from "./Canvas";
 type EntityKeys = "hero" | "zombies" | "bullets" | "text";
 
 interface Entity {
-  update: () => void;
-  draw: (gC: Readonly<GameCanvas>) => void;
-}
-
-interface Collidable {
   position: Vector2;
   widthHeight: Vector2;
+  update: () => void;
+  draw: (gC: Readonly<GameCanvas>) => void;
 }
 
 /**
@@ -24,10 +21,7 @@ interface Collidable {
  * Axis-aligned bounding boxes, test if two game entities are overlapping or not
  * =============================================================================
  */
-export function checkCollision(
-  entity1: Collidable,
-  entity2: Collidable
-): boolean {
+export function checkCollision(entity1: Entity, entity2: Entity): boolean {
   const left = entity1.position[0];
   const right = entity1.position[0] + entity1.widthHeight[0];
   const top = entity1.position[1];
@@ -83,6 +77,7 @@ export class World {
             fillStyle: "serif",
             font: "serif",
             fontSize: 32,
+            widthHeight: [0, 100],
           })
         ),
       ],
@@ -96,8 +91,6 @@ export class World {
   ): void => {
     entitiesGroupOne.forEach((entity, indexOne) =>
       entitiesGroupTwo.forEach((entityTwo, indexTwo) => {
-        // console.log(`entity ${JSON.stringify(entity)}`);
-        // console.log(indexTwo);
         if (checkCollision(entity, entityTwo)) {
           collisionHandler(indexOne, indexTwo);
         }
@@ -106,22 +99,17 @@ export class World {
   };
 
   zombieBulletCollisionHandler = (index: number, index2: number): void => {
-    let zombies = this.entities.get("zombies");
-    let bullets = this.entities.get("bullets");
-    console.log(`zombie hit!!!! ${index} ${index2}`);
+    const zombies = this.entities.get("zombies");
+    const bullets = this.entities.get("bullets");
     zombies?.splice(index, 1);
     bullets?.splice(index2, 1);
   };
 
-  heroZombieCollisionHandler = (index: number, index2: number): void => {
-    let zombies = this.entities.get("zombies");
-    let hero = this.entities.get("hero");
-    console.log(`hero hit!!!! ${index} ${index2}`);
-    hero?.splice(index, 1);
-    // lives -1
+  heroZombieCollisionHandler = (index: number): void => {
+    const hero = this.entities.get("hero");
+    hero?.splice(index, 1); // lives -1
   };
 
-  // eslint-disable-next-line class-methods-use-this
   checkCollision(): void {
     this.checkIfGroupsColliding(
       this.entities.get("zombies") as Entity[],

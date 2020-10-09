@@ -20,6 +20,7 @@ export interface TextDrawable extends Drawable {
   readonly fillStyle: string;
   readonly font: string;
   readonly fontSize: number;
+  readonly widthHeight: Vector2;
 }
 /**
  * Canvas
