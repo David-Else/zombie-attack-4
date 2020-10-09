@@ -1,4 +1,4 @@
-import { createMultiple } from "./helperFunctions";
+import { createMultiple, Vector2 } from "./helperFunctions";
 import {
   heroFactory,
   zombieFactory,
@@ -7,10 +7,50 @@ import {
 } from "./factories";
 import type { GameCanvas } from "./Canvas";
 
+type EntityKeys = "hero" | "zombies" | "bullets" | "text";
+
 interface Entity {
   update: () => void;
   draw: (gC: Readonly<GameCanvas>) => void;
 }
+
+interface Collidable {
+  position: Vector2;
+  widthHeight: Vector2;
+}
+
+/**
+ * =============================================================================
+ * Axis-aligned bounding boxes, test if two game entities are overlapping or not
+ * =============================================================================
+ */
+export function checkCollision(
+  entity1: Collidable,
+  entity2: Collidable
+): boolean {
+  const left = entity1.position[0];
+  const right = entity1.position[0] + entity1.widthHeight[0];
+  const top = entity1.position[1];
+  const bottom = entity1.position[1] + entity1.widthHeight[1];
+
+  const otherLeft = entity2.position[0];
+  const otherRight = entity2.position[0] + entity2.widthHeight[0];
+  const otherTop = entity2.position[1];
+  const otherBottom = entity2.position[1] + entity2.widthHeight[1];
+
+  return !(
+    left > otherRight ||
+    right <= otherLeft ||
+    top >= otherBottom ||
+    bottom <= otherTop
+  );
+}
+
+/**
+ * =============================================================================
+ * Zombie bullet collision handler
+ * =============================================================================
+ */
 
 export class World {
   entities;
@@ -19,7 +59,7 @@ export class World {
     gameCanvas: Readonly<GameCanvas>,
     options: { numberOfZombies: number }
   ) {
-    this.entities = new Map<string, Entity[]>([
+    this.entities = new Map<EntityKeys, Entity[]>([
       ["hero", createMultiple(1, () => heroFactory(gameCanvas.getMiddle()))],
       [
         "zombies",
@@ -53,5 +93,40 @@ export class World {
         ),
       ],
     ]);
+  }
+
+  checkIfGroupsColliding = (
+    entitiesGroupOne: Entity[],
+    entitiesGroupTwo: Entity[],
+    collisionHandler: (indexOne: number, indexTwo: number) => void
+  ): void => {
+    entitiesGroupOne.forEach((entity, indexOne) =>
+      entitiesGroupTwo.forEach((entityTwo, indexTwo) => {
+        // console.log(`entity ${JSON.stringify(entity)}`);
+        // console.log(indexTwo);
+        if (checkCollision(entity, entityTwo)) {
+          collisionHandler(indexOne, indexTwo);
+        }
+      })
+    );
+  };
+
+  zombieBulletCollisionHandler = (index: number, index2: number): void => {
+    let zombies = this.entities.get("zombies");
+    let bullets = this.entities.get("bullets");
+    console.log(`hit!!!! ${index} ${index2}`);
+    zombies?.splice(index, 1);
+    bullets?.splice(index2, 1);
+    // this.entities.zombies.splice(index, 1);
+    // this.entities.bullets.splice(indexTwo, 1);
+  };
+
+  // eslint-disable-next-line class-methods-use-this
+  checkCollision(entityGroup1: EntityKeys, entityGroup2: EntityKeys): void {
+    this.checkIfGroupsColliding(
+      this.entities.get(entityGroup1) as Entity[],
+      this.entities.get(entityGroup2) as Entity[],
+      this.zombieBulletCollisionHandler
+    );
   }
 }

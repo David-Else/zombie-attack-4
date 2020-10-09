@@ -11,8 +11,7 @@ export const gameCanvas = new GameCanvas(
       [window.innerWidth, window.innerWidth / ratio]
 );
 
-const world = new World(gameCanvas, { numberOfZombies: 100 });
-
+const world = new World(gameCanvas, { numberOfZombies: 10 });
 /**
  * Game loop
  */
@@ -26,6 +25,7 @@ function gameLoop(): void {
       entity.draw(gameCanvas);
     });
   });
+  world.checkCollision("zombies", "bullets");
 }
 
 gameLoop();
