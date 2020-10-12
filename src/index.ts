@@ -11,21 +11,40 @@ export const gameCanvas = new GameCanvas(
       [window.innerWidth, window.innerWidth / ratio]
 );
 
-const world = new World(gameCanvas, { numberOfZombies: 10 });
-/**
- * Game loop
- */
-function gameLoop(): void {
-  requestAnimationFrame(gameLoop);
-
-  gameCanvas.clearScreen();
-  world.entities.forEach((entityContainer) => {
-    entityContainer.forEach((entity) => {
-      entity.update();
-      entity.draw(gameCanvas);
-    });
+export function loadImage(filePath: string): Promise<HTMLImageElement> {
+  const imageElement = new Image();
+  imageElement.src = filePath;
+  return new Promise<HTMLImageElement>((resolve, reject) => {
+    imageElement.onload = () => resolve(imageElement);
+    imageElement.onerror = reject;
   });
-  world.checkCollision();
 }
 
-gameLoop();
+async function main() {
+  let testZombie;
+  [testZombie] = await Promise.all([
+    loadImage("http://localhost:8080/assets/zombie64-final.png"),
+  ]);
+  const world = new World(gameCanvas, {
+    numberOfZombies: 10,
+    zombieImage: testZombie,
+  });
+  /**
+   * Game loop
+   */
+  function gameLoop(): void {
+    requestAnimationFrame(gameLoop);
+
+    gameCanvas.clearScreen();
+    world.entities.forEach((entityContainer) => {
+      entityContainer.forEach((entity) => {
+        entity.update();
+        entity.draw(gameCanvas);
+      });
+    });
+    world.checkCollision();
+  }
+
+  gameLoop();
+}
+main();

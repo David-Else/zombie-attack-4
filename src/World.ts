@@ -45,7 +45,7 @@ export class World {
 
   constructor(
     gameCanvas: Readonly<GameCanvas>,
-    options: { numberOfZombies: number }
+    options: { numberOfZombies: number; zombieImage: HTMLImageElement }
   ) {
     this.entities = new Map<EntityKeys, Entity[]>([
       ["hero", createMultiple(1, () => heroFactory(gameCanvas.getMiddle()))],
@@ -56,7 +56,8 @@ export class World {
             gameCanvas.getMiddle(),
             gameCanvas.getWidthHeight(),
             gameCanvas.getMiddle(), // TODO SHOULD be hero.position somehow
-            [0, 0]
+            [0, 0],
+            options.zombieImage
           )
         ),
       ],
@@ -84,31 +85,20 @@ export class World {
     ]);
   }
 
-  checkIfGroupsColliding = (
-    entitiesGroupOne: Entity[],
-    entitiesGroupTwo: Entity[],
-    collisionHandler: (indexOne: number, indexTwo: number) => void
-  ): void => {
-    entitiesGroupOne.forEach((entity, indexOne) =>
-      entitiesGroupTwo.forEach((entityTwo, indexTwo) => {
-        if (checkCollision(entity, entityTwo)) {
-          collisionHandler(indexOne, indexTwo);
-        }
-      })
-    );
-  };
+  // createEntity(entityKey: EntityKeys): void {
+  //   const entity1 = this.entities.get(entityKey);
+  //   // ah ha!
+  // }
 
-  zombieBulletCollisionHandler = (index: number, index2: number): void => {
-    const zombies = this.entities.get("zombies");
-    const bullets = this.entities.get("bullets");
-    zombies?.splice(index, 1);
-    bullets?.splice(index2, 1);
-  };
+  getEntity(entityKey: EntityKeys, index: number): Entity {
+    const entityValue = this.entities.get(entityKey);
+    return entityValue[index];
+  }
 
-  heroZombieCollisionHandler = (index: number): void => {
-    const hero = this.entities.get("hero");
-    hero?.splice(index, 1); // lives -1
-  };
+  deleteEntity(entity: EntityKeys, index: number): void {
+    const entityToDelete = this.entities.get(entity);
+    entityToDelete?.splice(index, 1);
+  }
 
   checkCollision(): void {
     this.checkIfGroupsColliding(
@@ -122,4 +112,36 @@ export class World {
       this.heroZombieCollisionHandler
     );
   }
+
+  private readonly checkIfGroupsColliding = (
+    entitiesGroupOne: Entity[],
+    entitiesGroupTwo: Entity[],
+    collisionHandler: (indexOne: number, indexTwo: number) => void
+  ): void => {
+    entitiesGroupOne.forEach((entity, indexOne) =>
+      entitiesGroupTwo.forEach((entityTwo, indexTwo) => {
+        if (checkCollision(entity, entityTwo)) {
+          collisionHandler(indexOne, indexTwo);
+        }
+      })
+    );
+  };
+
+  /**
+   * Collision handlers are executed when two entities colide
+   *
+   * @param index position of the entity in the array to act on
+   * @param index2 position of the entity in the second array to act on
+   */
+  private readonly zombieBulletCollisionHandler = (
+    index: number,
+    index2: number
+  ): void => {
+    this.deleteEntity("zombies", index);
+    this.deleteEntity("bullets", index2);
+  };
+
+  private readonly heroZombieCollisionHandler = (index: number): void => {
+    this.deleteEntity("hero", index);
+  };
 }
