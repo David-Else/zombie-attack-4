@@ -20,26 +20,6 @@ function calculateRandomPositionAroundPoint(
 }
 
 /**
- * =========================================================================
- * Image loader
- * =========================================================================
- */
-/**
- * =========================================================================
- * Image loader
- * =========================================================================
- */
-
-// function addImageProcess(filePath: string) {
-//   return new Promise<HTMLImageElement>((resolve, reject) => {
-//     const img = new Image();
-//     img.onload = () => resolve(img);
-//     img.onerror = reject;
-//     img.src = filePath;
-//   });
-// }
-
-/**
  * Factories for entities
  */
 export function heroFactory(position: Vector2): Hero {
@@ -50,7 +30,6 @@ export function bulletFactory(position: Vector2): Bullet {
   return new Bullet(position, [0, 0], [0, 0], 1);
 }
 
-// Every method calling your async function directly or indirectly becomes automatically async as well.
 export function zombieFactory(
   centrePoint: Vector2,
   screenWidthHeight: Vector2,
@@ -58,9 +37,6 @@ export function zombieFactory(
   velocity: Vector2,
   image: HTMLImageElement
 ): Zombie {
-  // console.log("height", await addImageProcess("../assets/zombie64-final.png"));
-  // throw new Error();
-  // const zombieImage = addImageProcess("./assets/zombie64-final.png"); // Resolve it!
   const zombie = new Zombie(
     calculateRandomPositionAroundPoint(
       centrePoint, // TODO actual hero position!
@@ -71,8 +47,6 @@ export function zombieFactory(
     image,
     [image.width, image.height]
   );
-
-  // perform async zombie setup needed after instantiation
   return zombie;
 }
 

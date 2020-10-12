@@ -11,7 +11,7 @@ export const gameCanvas = new GameCanvas(
       [window.innerWidth, window.innerWidth / ratio]
 );
 
-export function loadImage(filePath: string): Promise<HTMLImageElement> {
+function loadImage(filePath: string): Promise<HTMLImageElement> {
   const imageElement = new Image();
   imageElement.src = filePath;
   return new Promise<HTMLImageElement>((resolve, reject) => {
@@ -21,13 +21,12 @@ export function loadImage(filePath: string): Promise<HTMLImageElement> {
 }
 
 async function main() {
-  let testZombie;
-  [testZombie] = await Promise.all([
-    loadImage("http://localhost:8080/assets/zombie64-final.png"),
+  const [zombieImage] = await Promise.all([
+    loadImage("assets/zombie64-final.png"),
   ]);
   const world = new World(gameCanvas, {
     numberOfZombies: 10,
-    zombieImage: testZombie,
+    zombieImage,
   });
   /**
    * Game loop
@@ -47,4 +46,7 @@ async function main() {
 
   gameLoop();
 }
-main();
+// this is not optimal, read up on promises
+main().catch(() => {
+  throw new Error();
+});
