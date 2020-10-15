@@ -26,7 +26,7 @@ async function main() {
     loadImage("assets/zombie64-final.png"),
   ]);
   const world = new World(gameCanvas, {
-    numberOfZombies: 10,
+    numberOfZombies: 5,
     zombieImage,
   });
   /**

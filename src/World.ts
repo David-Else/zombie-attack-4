@@ -70,10 +70,7 @@ export class World {
           )
         ),
       ],
-      [
-        "bullets",
-        createMultiple(1, () => bulletFactory(gameCanvas.getMiddle(), 90)),
-      ],
+      ["bullets", []],
       [
         "text",
         createMultiple(1, () =>
