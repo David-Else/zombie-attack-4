@@ -1,6 +1,6 @@
 import { DirectTowardsable } from "../components/DirectTowardsable";
 import type { Vector2 } from "../helperFunctions";
-import type { BitmapDrawable, GameCanvas } from "../Canvas";
+import type { BitmapDrawable, GameCanvas } from "../GameCanvas";
 
 export class Zombie implements BitmapDrawable {
   image: HTMLImageElement;

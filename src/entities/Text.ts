@@ -1,4 +1,4 @@
-import type { GameCanvas, TextDrawable } from "../Canvas";
+import type { GameCanvas, TextDrawable } from "../GameCanvas";
 
 export class Texty implements TextDrawable {
   position;
@@ -27,7 +27,5 @@ export class Texty implements TextDrawable {
     gC.drawText(this);
   }
 
-  update(): void {
-    this.rotation += 1;
-  }
+  update(): void {}
 }

@@ -1,6 +1,6 @@
 import { DirectTowardsable } from "../components/DirectTowardsable";
 import { addVectors, Vector2 } from "../helperFunctions";
-import type { GameCanvas, VectorDrawable } from "../Canvas";
+import type { GameCanvas, VectorDrawable } from "../GameCanvas";
 import type { PubSub } from "../EventObserver";
 
 export class Bullet implements VectorDrawable {

@@ -1,6 +1,6 @@
 import { addVectors } from "../helperFunctions";
 import type { Vector2 } from "../helperFunctions";
-import type { Drawable } from "../Canvas";
+import type { Drawable } from "../GameCanvas";
 
 export class DirectTowardsable {
   targetPosition;

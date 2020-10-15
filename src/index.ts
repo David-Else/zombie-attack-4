@@ -1,4 +1,4 @@
-import { GameCanvas } from "./Canvas";
+import { GameCanvas } from "./GameCanvas";
 import { PubSub } from "./EventObserver";
 import { World } from "./World";
 

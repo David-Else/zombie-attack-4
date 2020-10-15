@@ -5,14 +5,16 @@ import {
   bulletFactory,
   textFactory,
 } from "./factories";
-import type { GameCanvas } from "./Canvas";
+import type { GameCanvas } from "./GameCanvas";
 import { PubSub } from "./EventObserver";
 
 type EntityKeys = "hero" | "zombies" | "bullets" | "text";
 
+// can we take this from another interface?!
 interface Entity {
   position: Vector2;
   widthHeight: Vector2;
+  rotation: number;
   update: () => void;
   draw: (gC: Readonly<GameCanvas>) => void;
 }
@@ -44,13 +46,18 @@ function checkCollision(entity1: Entity, entity2: Entity): boolean {
 export class World {
   entities;
   bulletFiredPubSub;
+  zombieDiesPubSub;
 
   constructor(
     gameCanvas: Readonly<GameCanvas>,
     options: { numberOfZombies: number; zombieImage: HTMLImageElement }
   ) {
+    // Create PubSub event buses, they will be injected into entities that need them
     this.bulletFiredPubSub = new PubSub<string>();
+    this.zombieDiesPubSub = new PubSub<string>();
+    // Subscribe to any that need access to World scope
     this.bulletFiredPubSub.subscribe(() => this.addBullet());
+
     this.entities = new Map<EntityKeys, Entity[]>([
       [
         "hero",
@@ -92,26 +99,23 @@ export class World {
   }
 
   getEntity(entityKey: EntityKeys, index: number): Entity {
-    const entityValue = this.entities.get(entityKey);
-    return entityValue[index];
+    return this.entities.get(entityKey)?.[index];
   }
 
   addBullet(): void {
-    const entityValue = this.entities.get("bullets");
-    const hero = this.entities.get("hero");
-    if (typeof hero[0] !== "undefined") {
-      entityValue?.push(bulletFactory(hero[0].position, hero[0].rotation));
-    }
+    const hero = this.entities.get("hero"); // get possible undefined?
+    this.entities
+      .get("bullets")
+      ?.push(bulletFactory(hero?.[0].position, hero?.[0].rotation));
   }
 
   deleteEntity(entity: EntityKeys, index: number): void {
-    const entityToDelete = this.entities.get(entity);
-    entityToDelete?.splice(index, 1);
+    this.entities.get(entity)?.splice(index, 1);
   }
 
   checkCollision(): void {
     this.checkIfGroupsColliding(
-      this.entities.get("zombies") as Entity[],
+      this.entities.get("zombies"),
       this.entities.get("bullets") as Entity[],
       this.zombieBulletCollisionHandler
     );

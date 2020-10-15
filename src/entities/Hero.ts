@@ -1,5 +1,5 @@
 import type { PubSub } from "../EventObserver";
-import type { GameCanvas, VectorDrawable } from "../Canvas";
+import type { GameCanvas, VectorDrawable } from "../GameCanvas";
 import type { Vector2 } from "../helperFunctions";
 import { KeyboardInputable } from "../components/KeyboardInputable";
 

@@ -1,4 +1,4 @@
-import type { TextDrawable } from "./Canvas";
+import type { TextDrawable } from "./GameCanvas";
 import type { Vector2 } from "./helperFunctions";
 import { Hero } from "./entities/Hero";
 import { Zombie } from "./entities/Zombie";
