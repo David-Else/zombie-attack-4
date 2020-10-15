@@ -1,5 +1,5 @@
 import { DirectTowardsable } from "../components/DirectTowardsable";
-import type { Vector2 } from "../helperFunctions";
+import { addVectors, Vector2 } from "../helperFunctions";
 import type { GameCanvas, VectorDrawable } from "../Canvas";
 import type { PubSub } from "../EventObserver";
 
@@ -9,22 +9,10 @@ export class Bullet implements VectorDrawable {
   rotation;
   readonly fill = "black";
   readonly widthHeight: Vector2 = [15, 5];
-  readonly directTowards;
-  constructor(
-    position: Vector2,
-    target: Vector2,
-    velocity: Vector2,
-    rotation: number
-  ) {
+  constructor(position: Vector2, velocity: Vector2, rotation: number) {
     this.position = position;
     this.velocity = velocity;
     this.rotation = rotation;
-    this.directTowards = new DirectTowardsable(target, 1);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  sayHello(message: string): void {
-    console.log(`i am a bullet! ${message}`);
   }
 
   draw(gC: Readonly<GameCanvas>): void {
@@ -32,6 +20,10 @@ export class Bullet implements VectorDrawable {
   }
 
   update(): void {
-    this.directTowards.goTowardsTarget(this);
+    // move in direction of rotation
+    this.position = addVectors(this.position, [
+      Math.sin(this.rotation * (Math.PI / 180)),
+      Math.cos(this.rotation * (Math.PI / 180)),
+    ]);
   }
 }

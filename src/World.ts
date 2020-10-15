@@ -72,7 +72,7 @@ export class World {
       ],
       [
         "bullets",
-        createMultiple(1, () => bulletFactory(gameCanvas.getMiddle())),
+        createMultiple(1, () => bulletFactory(gameCanvas.getMiddle(), 90)),
       ],
       [
         "text",
@@ -108,7 +108,7 @@ export class World {
     const entityValue = this.entities.get("bullets");
     const hero = this.entities.get("hero");
     if (typeof hero[0] !== "undefined") {
-      entityValue?.push(bulletFactory(hero[0].position));
+      entityValue?.push(bulletFactory(hero[0].position, hero[0].rotation));
     }
   }
 
