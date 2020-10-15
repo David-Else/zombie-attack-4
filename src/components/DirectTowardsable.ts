@@ -20,13 +20,11 @@ export class DirectTowardsable {
     const angle = Math.atan2(dy, dx);
 
     // compute the velocity vector through magnitude (speed) and the angle
-    // eslint-disable-next-line no-param-reassign
     parentObj.velocity = [
       this.speed * Math.cos(angle),
       this.speed * Math.sin(angle),
     ];
     // Add the position to the velocity to move the object
-    // eslint-disable-next-line no-param-reassign
     parentObj.position = addVectors(parentObj.position, parentObj.velocity);
   }
 }

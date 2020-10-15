@@ -6,8 +6,6 @@ import { Texty } from "./entities/Text";
 import { Bullet } from "./entities/Bullet";
 import type { PubSub } from "./EventObserver";
 
-// bulletFiredPubSub.subscribe((message: string) => bulletFactory(message));
-
 function calculateRandomPositionAroundPoint(
   centrePoint: Readonly<Vector2>,
   screenWidthHeight: Readonly<Vector2>

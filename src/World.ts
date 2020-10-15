@@ -22,7 +22,7 @@ interface Entity {
  * Axis-aligned bounding boxes, test if two game entities are overlapping or not
  * =============================================================================
  */
-export function checkCollision(entity1: Entity, entity2: Entity): boolean {
+function checkCollision(entity1: Entity, entity2: Entity): boolean {
   const left = entity1.position[0];
   const right = entity1.position[0] + entity1.widthHeight[0];
   const top = entity1.position[1];
@@ -91,11 +91,6 @@ export class World {
     ]);
   }
 
-  // createEntity(entityKey: EntityKeys): void {
-  //   const entity1 = this.entities.get(entityKey);
-  //   // ah ha!
-  // }
-
   getEntity(entityKey: EntityKeys, index: number): Entity {
     const entityValue = this.entities.get(entityKey);
     return entityValue[index];
@@ -141,18 +136,12 @@ export class World {
     );
   };
 
-  /**
-   * Collision handlers are executed when two entities colide
-   *
-   * @param index position of the entity in the array to act on
-   * @param index2 position of the entity in the second array to act on
-   */
   private readonly zombieBulletCollisionHandler = (
-    index: number,
-    index2: number
+    entityIndex1: number,
+    entityIndex2: number
   ): void => {
-    this.deleteEntity("zombies", index);
-    this.deleteEntity("bullets", index2);
+    this.deleteEntity("zombies", entityIndex1);
+    this.deleteEntity("bullets", entityIndex2);
   };
 
   private readonly heroZombieCollisionHandler = (index: number): void => {
