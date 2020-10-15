@@ -137,14 +137,14 @@ export class World {
   };
 
   private readonly zombieBulletCollisionHandler = (
-    entityIndex1: number,
-    entityIndex2: number
+    zombieIndex: number,
+    heroIndex: number
   ): void => {
-    this.deleteEntity("zombies", entityIndex1);
-    this.deleteEntity("bullets", entityIndex2);
+    this.deleteEntity("zombies", zombieIndex);
+    this.deleteEntity("bullets", heroIndex);
   };
 
-  private readonly heroZombieCollisionHandler = (index: number): void => {
-    this.deleteEntity("hero", index);
+  private readonly heroZombieCollisionHandler = (heroIndex: number): void => {
+    this.deleteEntity("hero", heroIndex);
   };
 }
