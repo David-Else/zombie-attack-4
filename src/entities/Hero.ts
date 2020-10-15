@@ -1,3 +1,4 @@
+import type { PubSub } from "../EventObserver";
 import type { GameCanvas, VectorDrawable } from "../Canvas";
 import type { Vector2 } from "../helperFunctions";
 import { KeyboardInputable } from "../components/KeyboardInputable";
@@ -8,11 +9,14 @@ export class Hero implements VectorDrawable {
   rotation = 0;
   readonly fill = "red";
   readonly widthHeight: Vector2 = [65, 25];
+  bulletFiredPubSub;
   private readonly keyboardInput;
 
-  constructor(position: Vector2) {
+  constructor(position: Vector2, bulletFiredPubSub: PubSub<string>) {
     this.position = position;
     this.keyboardInput = new KeyboardInputable();
+    this.bulletFiredPubSub = bulletFiredPubSub;
+    // bulletFiredPubSub.subscribe((message: string) => this.sayHello(message));
   }
 
   draw(gC: Readonly<GameCanvas>): void {
@@ -26,8 +30,10 @@ export class Hero implements VectorDrawable {
     if (this.keyboardInput.keysPressed.left) {
       this.rotation -= 1;
     }
+    this.checkFire();
+  }
 
-    // if fire is not pressed then un-pause the firing
+  private checkFire() {
     if (!this.keyboardInput.keysPressed.fire) {
       this.keyboardInput.keysPressed.firePaused = false;
     }
@@ -39,7 +45,8 @@ export class Hero implements VectorDrawable {
     ) {
       // pause the firing until the fire key is released
       this.keyboardInput.keysPressed.firePaused = true;
-      console.log("fire");
+      this.bulletFiredPubSub.emit("bullet fired!");
+      console.log("should happen once");
     }
   }
 }

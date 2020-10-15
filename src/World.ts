@@ -6,6 +6,7 @@ import {
   textFactory,
 } from "./factories";
 import type { GameCanvas } from "./Canvas";
+import { PubSub } from "./EventObserver";
 
 type EntityKeys = "hero" | "zombies" | "bullets" | "text";
 
@@ -42,13 +43,21 @@ export function checkCollision(entity1: Entity, entity2: Entity): boolean {
 
 export class World {
   entities;
+  bulletFiredPubSub;
 
   constructor(
     gameCanvas: Readonly<GameCanvas>,
     options: { numberOfZombies: number; zombieImage: HTMLImageElement }
   ) {
+    this.bulletFiredPubSub = new PubSub<string>();
+    this.bulletFiredPubSub.subscribe(() => this.addBullet());
     this.entities = new Map<EntityKeys, Entity[]>([
-      ["hero", createMultiple(1, () => heroFactory(gameCanvas.getMiddle()))],
+      [
+        "hero",
+        createMultiple(1, () =>
+          heroFactory(gameCanvas.getMiddle(), this.bulletFiredPubSub)
+        ),
+      ],
       [
         "zombies",
         createMultiple(options.numberOfZombies, () =>
@@ -93,6 +102,14 @@ export class World {
   getEntity(entityKey: EntityKeys, index: number): Entity {
     const entityValue = this.entities.get(entityKey);
     return entityValue[index];
+  }
+
+  addBullet(): void {
+    const entityValue = this.entities.get("bullets");
+    const hero = this.entities.get("hero");
+    if (typeof hero[0] !== "undefined") {
+      entityValue?.push(bulletFactory(hero[0].position));
+    }
   }
 
   deleteEntity(entity: EntityKeys, index: number): void {

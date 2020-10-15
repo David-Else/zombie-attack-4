@@ -4,6 +4,9 @@ import { Hero } from "./entities/Hero";
 import { Zombie } from "./entities/Zombie";
 import { Texty } from "./entities/Text";
 import { Bullet } from "./entities/Bullet";
+import type { PubSub } from "./EventObserver";
+
+// bulletFiredPubSub.subscribe((message: string) => bulletFactory(message));
 
 function calculateRandomPositionAroundPoint(
   centrePoint: Readonly<Vector2>,
@@ -22,8 +25,11 @@ function calculateRandomPositionAroundPoint(
 /**
  * Factories for entities
  */
-export function heroFactory(position: Vector2): Hero {
-  return new Hero(position);
+export function heroFactory(
+  position: Vector2,
+  bulletFiredPubSub: PubSub<string>
+): Hero {
+  return new Hero(position, bulletFiredPubSub);
 }
 
 export function bulletFactory(position: Vector2): Bullet {

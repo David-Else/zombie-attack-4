@@ -1,6 +1,7 @@
 import { DirectTowardsable } from "../components/DirectTowardsable";
 import type { Vector2 } from "../helperFunctions";
 import type { GameCanvas, VectorDrawable } from "../Canvas";
+import type { PubSub } from "../EventObserver";
 
 export class Bullet implements VectorDrawable {
   position;
@@ -19,6 +20,11 @@ export class Bullet implements VectorDrawable {
     this.velocity = velocity;
     this.rotation = rotation;
     this.directTowards = new DirectTowardsable(target, 1);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  sayHello(message: string): void {
+    console.log(`i am a bullet! ${message}`);
   }
 
   draw(gC: Readonly<GameCanvas>): void {

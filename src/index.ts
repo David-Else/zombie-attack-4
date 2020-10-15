@@ -1,4 +1,5 @@
 import { GameCanvas } from "./Canvas";
+import { PubSub } from "./EventObserver";
 import { World } from "./World";
 
 const ratio = 4 / 3;
@@ -42,11 +43,12 @@ async function main() {
       });
     });
     world.checkCollision();
+    // world.addBullet();
   }
 
   gameLoop();
 }
 // this is not optimal, read up on promises
 main().catch(() => {
-  throw new Error();
+  throw new Error("hello i am an error");
 });
