@@ -1,14 +1,23 @@
 const testMap = new Map([
-  ["x", [{ a: 100 }, { b: 200 }, { c: 300 }]],
-  ["y", [{ a: 400 }, { b: 500 }, { c: 600 }]],
-  ["z", [{ a: 700 }, { b: 800 }, { c: 900 }]],
+  ["x", [{ a: 999 }, { a: 111 }, { a: 300 }, { a: 120 }, { a: 130 }]],
+  ["y", [{ a: 400 }, { a: 500 }, { a: 999 }, { a: 100 }, { a: 444 }]],
 ]);
 
-// use destructuring to get values of keys
-let { x, y, z } = Object.fromEntries(testMap);
-console.log(testMap.get("x")); // [ { a: 100 }, { b: 200 }, { c: 300 } ]
+let counter = 0;
+function checkIfGroupsColliding(): void {
+  const entitiesGroupOne = testMap.get("x");
+  const entitiesGroupTwo = testMap.get("y");
+  entitiesGroupOne?.some((entity, indexOne) =>
+    entitiesGroupTwo?.some((entityTwo, indexTwo) => {
+      counter += 1;
+      if (entity.a === entityTwo.a) {
+        console.log(`found match ${entity.a} ${entityTwo.a}`);
+        return true; // return from some() when first match is found
+      }
+      return false;
+    })
+  );
+}
 
-// use destructured value with array index and propety to get value (type check fails)
-console.log(x[0].a); // 100 but Property 'a' does not exist on type 'number'.ts(2339)
-
-const baboon = testMap.get("x")?.[0].a; //?
+checkIfGroupsColliding();
+console.log(counter);

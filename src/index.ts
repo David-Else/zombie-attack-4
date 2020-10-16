@@ -1,5 +1,4 @@
 import { GameCanvas } from "./GameCanvas";
-import { PubSub } from "./EventObserver";
 import { World } from "./World";
 
 const ratio = 4 / 3;
@@ -26,7 +25,7 @@ async function main() {
     loadImage("assets/zombie64-final.png"),
   ]);
   const world = new World(gameCanvas, {
-    numberOfZombies: 5,
+    numberOfZombies: 50,
     zombieImage,
   });
   /**

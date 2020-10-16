@@ -115,7 +115,7 @@ export class World {
 
   checkCollision(): void {
     this.checkIfGroupsColliding(
-      this.entities.get("zombies"),
+      this.entities.get("zombies"), // WHY?
       this.entities.get("bullets") as Entity[],
       this.zombieBulletCollisionHandler
     );
@@ -131,11 +131,13 @@ export class World {
     entitiesGroupTwo: Entity[],
     collisionHandler: (indexOne: number, indexTwo: number) => void
   ): void => {
-    entitiesGroupOne.forEach((entity, indexOne) =>
-      entitiesGroupTwo.forEach((entityTwo, indexTwo) => {
+    entitiesGroupOne.some((entity, indexOne) =>
+      entitiesGroupTwo.some((entityTwo, indexTwo) => {
         if (checkCollision(entity, entityTwo)) {
           collisionHandler(indexOne, indexTwo);
+          return true; // return from some() when first match is found
         }
+        return false;
       })
     );
   };
