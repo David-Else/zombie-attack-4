@@ -8,6 +8,19 @@ export const createMultiple = <T>(
 type VectorFn = (a: Readonly<Vector2>, b: Readonly<Vector2>) => Vector2;
 export const addVectors: VectorFn = (a, b) => [a[0] + b[0], a[1] + b[1]];
 export const divideVectors: VectorFn = (a, b) => [a[0] / b[0], a[1] / b[1]];
+export const calculateRandomPositionAroundPoint: VectorFn = (
+  centrePoint,
+  screenWidthHeight
+) => {
+  const variationInR = 1;
+  const minimumR = screenWidthHeight[1] / 2; // TODO add size of entity make always on screen
+  const theta = Math.random() * (2 * Math.PI);
+  const r = Math.random() * variationInR + minimumR;
+  return [
+    Math.cos(theta) * r + centrePoint[0],
+    Math.sin(theta) * r + centrePoint[1],
+  ];
+};
 
 export const moveForward = (
   position: Readonly<Vector2>,
