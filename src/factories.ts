@@ -30,8 +30,14 @@ export function heroFactory(
   return new Hero(position, bulletFiredPubSub);
 }
 
-export function bulletFactory(position: Vector2, rotation: number): Bullet {
-  return new Bullet(position, [0, 0], rotation);
+export function bulletFactory({
+  position,
+  rotation,
+}: {
+  position: Vector2;
+  rotation: number;
+}): Bullet {
+  return new Bullet({ position, velocity: [0, 0], rotation });
 }
 
 export function zombieFactory(

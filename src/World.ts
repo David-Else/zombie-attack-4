@@ -1,4 +1,9 @@
-import { createMultiple, Vector2 } from "./helperFunctions";
+import {
+  addVectors,
+  createMultiple,
+  divideVectors,
+  Vector2,
+} from "./helperFunctions";
 import {
   heroFactory,
   zombieFactory,
@@ -102,11 +107,21 @@ export class World {
     return this.entities.get(entityKey)?.[index];
   }
 
+  centerOfEntityScreenPosition(entity: Entity): Vector2 {
+    const middleOfEntity = divideVectors(entity.widthHeight, [2, 2]);
+    return addVectors(entity.position, middleOfEntity);
+  }
+
   addBullet(): void {
     const hero = this.entities.get("hero"); // get possible undefined?
     this.entities
       .get("bullets")
-      ?.push(bulletFactory(hero?.[0].position, hero?.[0].rotation));
+      ?.push(
+        bulletFactory({
+          position: this.centerOfEntityScreenPosition(hero?.[0]),
+          rotation: hero?.[0].rotation,
+        })
+      );
   }
 
   deleteEntity(entity: EntityKeys, index: number): void {

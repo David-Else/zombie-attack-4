@@ -11,6 +11,9 @@ export class KeyboardInputable {
     document.addEventListener("keyup", this.keyHandler);
   }
 
+  // handling keys in JS, what I'd be most-inclined to do is let the keyboard fire as many keydown and keyup events as it wants.
+  // Instead of buffering that, have the only thing the key-event function does is tell a Keyboard object whether a key is down, or whether it is up.
+
   private readonly keyHandler = (event: KeyboardEvent): void => {
     switch (event.code) {
       case "KeyF":

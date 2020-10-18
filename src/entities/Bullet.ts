@@ -1,15 +1,21 @@
-import { DirectTowardsable } from "../components/DirectTowardsable";
-import { addVectors, Vector2 } from "../helperFunctions";
+import { moveForward, Vector2 } from "../helperFunctions";
 import type { GameCanvas, VectorDrawable } from "../GameCanvas";
-import type { PubSub } from "../EventObserver";
 
 export class Bullet implements VectorDrawable {
   position;
   velocity;
   rotation;
   readonly fill = "black";
-  readonly widthHeight: Vector2 = [15, 5];
-  constructor(position: Vector2, velocity: Vector2, rotation: number) {
+  readonly widthHeight: Vector2 = [5, 15];
+  constructor({
+    position,
+    velocity,
+    rotation,
+  }: {
+    position: Vector2;
+    velocity: Vector2;
+    rotation: number;
+  }) {
     this.position = position;
     this.velocity = velocity;
     this.rotation = rotation;
@@ -20,10 +26,6 @@ export class Bullet implements VectorDrawable {
   }
 
   update(): void {
-    // move in direction of rotation
-    this.position = addVectors(this.position, [
-      Math.sin(this.rotation * (Math.PI / 180)),
-      Math.cos(this.rotation * (Math.PI / 180)),
-    ]);
+    this.position = moveForward(this.position, this.rotation);
   }
 }

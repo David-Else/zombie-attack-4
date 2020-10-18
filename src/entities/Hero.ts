@@ -46,7 +46,6 @@ export class Hero implements VectorDrawable {
       // pause the firing until the fire key is released
       this.keyboardInput.keysPressed.firePaused = true;
       this.bulletFiredPubSub.emit("bullet fired!");
-      console.log("should happen once");
     }
   }
 }
