@@ -1,3 +1,5 @@
+import type { Entity } from "./World";
+
 export type Vector2 = [number, number];
 
 export const createMultiple = <T>(
@@ -6,8 +8,14 @@ export const createMultiple = <T>(
 ): T[] => Array.from({ length: numberOfClasses }, factory);
 
 type VectorFn = (x: Readonly<Vector2>, y: Readonly<Vector2>) => Vector2;
+
 export const addVectors: VectorFn = (x, y) => [x[0] + y[0], x[1] + y[1]];
+
 export const divideVectors: VectorFn = (x, y) => [x[0] / y[0], x[1] / y[1]];
+
+export const calculateCenter = (entity: Readonly<Entity>): Vector2 =>
+  addVectors(entity.position, divideVectors(entity.widthHeight, [2, 2]));
+
 export const calculateRandomPositionAroundPoint: VectorFn = (
   centrePoint,
   screenWidthHeight
