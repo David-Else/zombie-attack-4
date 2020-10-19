@@ -1,4 +1,4 @@
-import type { TextDrawable } from "./GameCanvas";
+import type { TextObject } from "./GameCanvas";
 import { calculateRandomPositionAroundPoint, Vector2 } from "./helperFunctions";
 import { Hero } from "./entities/Hero";
 import { Zombie } from "./entities/Zombie";
@@ -23,13 +23,21 @@ export function bulletFactory({
   return new Bullet({ position, velocity: [0, 0], rotation });
 }
 
-export function zombieFactory(
+type ZombieFactory = (
   centrePoint: Vector2,
   screenWidthHeight: Vector2,
   target: Vector2,
   velocity: Vector2,
   image: HTMLImageElement
-): Zombie {
+) => Zombie;
+
+export const zombieFactory: ZombieFactory = (
+  centrePoint,
+  screenWidthHeight,
+  target,
+  velocity,
+  image
+) => {
   const zombie = new Zombie(
     calculateRandomPositionAroundPoint(
       centrePoint, // TODO actual hero position!
@@ -41,8 +49,13 @@ export function zombieFactory(
     [image.width, image.height]
   );
   return zombie;
+};
+
+export interface TextFactory extends TextObject {
+  position: Vector2;
+  velocity: Vector2;
+  rotation: number;
+  widthHeight: Vector2;
 }
 
-export function textFactory(textObj: Omit<TextDrawable, "draw">): Texty {
-  return new Texty(textObj);
-}
+export const textFactory = (textObj: TextFactory): Texty => new Texty(textObj);

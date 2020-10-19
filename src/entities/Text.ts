@@ -1,3 +1,4 @@
+import type { TextFactory } from "../factories";
 import type { GameCanvas, TextDrawable } from "../GameCanvas";
 
 export class Texty implements TextDrawable {
@@ -11,7 +12,7 @@ export class Texty implements TextDrawable {
   fontSize;
   widthHeight;
 
-  constructor(text: Omit<TextDrawable, "draw">) {
+  constructor(text: TextFactory) {
     this.position = text.position;
     this.velocity = text.velocity;
     this.text = text.text;

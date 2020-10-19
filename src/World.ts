@@ -15,9 +15,9 @@ import { PubSub } from "./EventObserver";
 
 type EntityKeys = "hero" | "zombies" | "bullets" | "text";
 
-// can we take this from another interface?!
-interface Entity {
+export interface Entity {
   position: Vector2;
+  velocity: Vector2;
   widthHeight: Vector2;
   rotation: number;
   update: () => void;
@@ -114,14 +114,12 @@ export class World {
 
   addBullet(): void {
     const hero = this.entities.get("hero"); // get possible undefined?
-    this.entities
-      .get("bullets")
-      ?.push(
-        bulletFactory({
-          position: this.centerOfEntityScreenPosition(hero?.[0]),
-          rotation: hero?.[0].rotation,
-        })
-      );
+    this.entities.get("bullets")?.push(
+      bulletFactory({
+        position: this.centerOfEntityScreenPosition(hero?.[0]),
+        rotation: hero?.[0].rotation,
+      })
+    );
   }
 
   deleteEntity(entity: EntityKeys, index: number): void {

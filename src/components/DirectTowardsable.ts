@@ -1,6 +1,7 @@
+import type { Entity } from "../World";
 import { addVectors } from "../helperFunctions";
+
 import type { Vector2 } from "../helperFunctions";
-import type { Drawable } from "../GameCanvas";
 
 export class DirectTowardsable {
   targetPosition;
@@ -11,7 +12,7 @@ export class DirectTowardsable {
     this.speed = speed;
   }
 
-  public goTowardsTarget(parentObj: Drawable): void {
+  public goTowardsTarget(parentObj: Entity): void {
     // compute delta between the source point and the destination point
     const dx = this.targetPosition[0] - parentObj.position[0];
     const dy = this.targetPosition[1] - parentObj.position[1];

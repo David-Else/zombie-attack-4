@@ -5,9 +5,9 @@ export const createMultiple = <T>(
   factory: () => T
 ): T[] => Array.from({ length: numberOfClasses }, factory);
 
-type VectorFn = (a: Readonly<Vector2>, b: Readonly<Vector2>) => Vector2;
-export const addVectors: VectorFn = (a, b) => [a[0] + b[0], a[1] + b[1]];
-export const divideVectors: VectorFn = (a, b) => [a[0] / b[0], a[1] / b[1]];
+type VectorFn = (x: Readonly<Vector2>, y: Readonly<Vector2>) => Vector2;
+export const addVectors: VectorFn = (x, y) => [x[0] + y[0], x[1] + y[1]];
+export const divideVectors: VectorFn = (x, y) => [x[0] / y[0], x[1] / y[1]];
 export const calculateRandomPositionAroundPoint: VectorFn = (
   centrePoint,
   screenWidthHeight

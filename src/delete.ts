@@ -19,5 +19,13 @@ function checkIfGroupsColliding(): void {
   );
 }
 
+type x = keyof typeof testMap;
 checkIfGroupsColliding();
 console.log(counter);
+const x = typeof testMap.keys();
+for (let key of testMap.keys()) {
+  console.log(key);
+}
+
+const entityTypeValues = ["hero", "zombie"] as const;
+type EntityType = typeof entityTypeValues[number];
