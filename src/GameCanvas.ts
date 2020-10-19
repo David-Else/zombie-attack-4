@@ -1,12 +1,6 @@
 import type { Vector2 } from "./helperFunctions";
 import type { Entity } from "./World";
 
-// export interface Drawable extends Entity {
-//   position: Vector2;
-//   velocity: Vector2;
-//   rotation: number;
-//   draw: (gC: Readonly<GameCanvas>) => void;
-// }
 export interface VectorDrawable extends Entity {
   readonly fill: string;
 }
@@ -23,10 +17,9 @@ export interface TextObject {
 }
 
 export interface TextDrawable extends Entity, TextObject {}
+
 /**
- * Canvas
- *
- * Encapsulate the browser canvas context and add methods that use it
+ * Encapsulate the browser canvas context and add domain specific methods
  */
 export class GameCanvas {
   private ctx;
@@ -81,7 +74,6 @@ export class GameCanvas {
   drawImage(entity: BitmapDrawable): void {
     this.ctx.drawImage(entity.image, entity.position[0], entity.position[1]);
   }
-  // ?? is this optimal
   drawText(entity: TextDrawable): void {
     const linesOfText = entity.text.split("\n");
     this.ctx.save();
