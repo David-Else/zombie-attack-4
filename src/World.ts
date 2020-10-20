@@ -98,18 +98,22 @@ export class World {
     ]);
   }
 
-  getEntity(entityKey: EntityKeys, index: number): Entity {
-    return this.entities.get(entityKey)?.[index];
+  getEntity(entityKey: EntityKeys, index: number): Entity | undefined {
+    const result = this.entities.get(entityKey)?.[index];
+    return result;
   }
 
   addBullet(): void {
-    const hero = this.entities.get("hero"); // get possible undefined?
-    this.entities.get("bullets")?.push(
-      bulletFactory({
-        position: calculateCenter(hero?.[0]),
-        rotation: hero?.[0].rotation,
-      })
-    );
+    const hero = this.entities.get("hero");
+    if (hero) {
+      // get possible undefined?
+      this.entities.get("bullets")?.push(
+        bulletFactory({
+          position: calculateCenter(hero[0]),
+          rotation: hero[0].rotation,
+        })
+      );
+    }
   }
 
   deleteEntity(entity: EntityKeys, index: number): void {
@@ -119,23 +123,23 @@ export class World {
   checkCollision(): void {
     this.checkIfGroupsColliding(
       this.entities.get("zombies"), // WHY?
-      this.entities.get("bullets") as Entity[],
+      this.entities.get("bullets"),
       this.zombieBulletCollisionHandler
     );
     this.checkIfGroupsColliding(
-      this.entities.get("hero") as Entity[],
-      this.entities.get("zombies") as Entity[],
+      this.entities.get("hero"),
+      this.entities.get("zombies"),
       this.heroZombieCollisionHandler
     );
   }
 
   private readonly checkIfGroupsColliding = (
-    entitiesGroupOne: Entity[],
-    entitiesGroupTwo: Entity[],
+    entitiesGroupOne: Entity[] | undefined,
+    entitiesGroupTwo: Entity[] | undefined,
     collisionHandler: (indexOne: number, indexTwo: number) => void
   ): void => {
-    entitiesGroupOne.some((entity, indexOne) =>
-      entitiesGroupTwo.some((entityTwo, indexTwo) => {
+    entitiesGroupOne?.some((entity, indexOne) =>
+      entitiesGroupTwo?.some((entityTwo, indexTwo) => {
         if (checkCollision(entity, entityTwo)) {
           collisionHandler(indexOne, indexTwo);
           return true; // return from some() when first match is found
