@@ -1,4 +1,4 @@
-# Inheritance
+# Interface Inheritance
 
 ![inheritance](uml.svg.jpg)
 
