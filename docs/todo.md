@@ -1,0 +1,7 @@
+- add sound
+- fix bullets
+- add levels
+- fix text to display what ever you want (needs some api thought!)
+- add start screen
+- add game over screen
+- add animation for zombie deaths

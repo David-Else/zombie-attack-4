@@ -9,6 +9,7 @@ devDependencies:
   eslint-plugin-import: 2.22.1_eslint@7.11.0
   prettier: 2.1.2
   snowpack: 2.14.0
+  tplant: 2.3.6
   typescript: 4.0.3
 lockfileVersion: 5.1
 packages:
@@ -621,6 +622,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
+  /commander/6.1.0:
+    dev: true
+    engines:
+      node: '>= 6'
+    resolution:
+      integrity: sha512-wl7PNrYWd2y5mp1OK/LhTlv8Ff4kQJQRXXAvF+uU/TPNiVJUxZLRYGj/B0y/lPGAVcSbJqH2Za/cvHmrPMC8mA==
   /commondir/1.0.1:
     dev: true
     resolution:
@@ -2108,6 +2115,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==
+  /plantuml-encoder/1.4.0:
+    dev: true
+    resolution:
+      integrity: sha512-sxMwpDw/ySY1WB2CE3+IdMuEcWibJ72DDOsXLkSmEaSzwEUaYBT6DWgOfBiHGCux4q433X6+OEFWjlVqp7gL6g==
   /postcss-modules-extract-imports/1.1.0:
     dependencies:
       postcss: 6.0.1
@@ -2575,6 +2586,16 @@ packages:
       node: '>=8.0'
     resolution:
       integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
+  /tplant/2.3.6:
+    dependencies:
+      commander: 6.1.0
+      glob: 7.1.6
+      plantuml-encoder: 1.4.0
+      typescript: 4.0.3
+    dev: true
+    hasBin: true
+    resolution:
+      integrity: sha512-rCPvqBX0WoBVnW1f3uMC22kQF9EUf6/t0rek8QtraUxf8e3dASI3M/kHo0ySzW8ESf2kTWvtzf0VNWS0X8XHcQ==
   /tsconfig-paths/3.9.0:
     dependencies:
       '@types/json5': 0.0.29
@@ -2726,4 +2747,5 @@ specifiers:
   eslint-plugin-import: ^2.22.1
   prettier: ^2.1.2
   snowpack: ^2.14.0
+  tplant: ^2.3.6
   typescript: ^4.0.3
