@@ -1,7 +1,9 @@
-# Interface Inheritance
+# Zombie Attack! - The Never Ending Refactor
+
+## Interface Inheritance
 
 ![inheritance](uml.svg)
 
-# Composition
+## Composition
 
 ![composition](uml-composition.svg)
