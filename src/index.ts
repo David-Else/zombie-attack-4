@@ -2,8 +2,6 @@ import { GameCanvas } from "./GameCanvas";
 import { World } from "./World";
 import levelData from "./levelData.json"; // snowpack creates proxy file
 
-console.log(levelData.count);
-
 const ratio = 4 / 3;
 export const gameCanvas = new GameCanvas(
   document.getElementById("game-canvas"),
@@ -28,7 +26,7 @@ async function main() {
     loadImage("assets/zombie64-final.png"),
   ]);
   const world = new World(gameCanvas, {
-    numberOfZombies: 50,
+    numberOfZombies: levelData.level1.zombies,
     zombieImage,
   });
   /**

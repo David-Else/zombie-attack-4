@@ -1,1 +1,18 @@
-{ "result": true, "count": 42 }
+{
+  "level1": {
+    "zombies": 10,
+    "bullets": 100
+  },
+  "level2": {
+    "zombies": 20,
+    "bullets": 150
+  },
+  "level3": {
+    "zombies": 30,
+    "bullets": 200
+  },
+  "level4": {
+    "zombies": 40,
+    "bullets": 250
+  }
+}
