@@ -1,10 +1,11 @@
-import type { TextDrawable } from "./GameCanvas";
-import { calculateRandomPositionAroundPoint, Vector2 } from "./helperFunctions";
+import { calculateRandomPositionAroundPoint } from "./helperFunctions";
 import { Hero } from "./entities/Hero";
 import { Zombie } from "./entities/Zombie";
 import { Texty } from "./entities/Text";
 import { Bullet } from "./entities/Bullet";
 import type { PubSub } from "./EventObserver";
+import type { TextDrawable } from "./GameCanvas";
+import type { Vector2 } from "./helperFunctions";
 
 export function heroFactory(
   position: Vector2,
@@ -51,13 +52,6 @@ export const zombieFactory: ZombieFactory = (
   return zombie;
 };
 
-type TextFactory = Omit<TextDrawable, "update" | "draw">;
-
-// export interface TextFactory extends TextDrawable {
-//   position: Vector2;
-//   velocity: Vector2;
-//   rotation: number;
-//   widthHeight: Vector2;
-// }
+export type TextFactory = Omit<TextDrawable, "update" | "draw">;
 
 export const textFactory = (textObj: TextFactory): Texty => new Texty(textObj);

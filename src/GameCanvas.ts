@@ -8,14 +8,6 @@ export interface BitmapDrawable extends Entity {
   readonly image: HTMLImageElement;
 }
 
-// export interface TextObject {
-//   readonly text: string;
-//   readonly textAlignment: CanvasTextAlign;
-//   readonly fillStyle: CanvasFillStrokeStyles["fillStyle"];
-//   readonly font: CanvasTextDrawingStyles["font"];
-//   readonly fontSize: number;
-// }
-
 export interface TextDrawable extends Entity {
   readonly text: string;
   readonly textAlignment: CanvasTextAlign;

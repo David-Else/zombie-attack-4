@@ -1,4 +1,5 @@
-import { moveForward, Vector2 } from "../helperFunctions";
+import { moveForward } from "../helperFunctions";
+import type { Vector2 } from "../helperFunctions";
 import type { GameCanvas, VectorDrawable } from "../GameCanvas";
 
 export class Bullet implements VectorDrawable {

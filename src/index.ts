@@ -42,7 +42,6 @@ async function main() {
       });
     });
     world.checkCollision();
-    // world.addBullet();
   }
 
   gameLoop();
