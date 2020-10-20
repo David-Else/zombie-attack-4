@@ -5,7 +5,7 @@
     "test": "echo \"This template does not include a test runner by default.\" && exit 1",
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "lint": "prettier --check \"src/**/*.{ts,js}\"",
-    "generateUML": "tplant --input src/index.ts --output uml1.svg -C"
+    "generateUML": "tplant --input src/index.ts --output uml.svg && tplant --input src/index.ts --output uml-composition.svg -C"
   },
   "devDependencies": {
     "@snowpack/plugin-run-script": "^2.1.5",

@@ -1,7 +1,7 @@
 # Interface Inheritance
 
-![inheritance](uml.svg.jpg)
+![inheritance](uml.svg)
 
 # Composition
 
-![composition](uml1.svg.jpg)
+![composition](uml-composition.svg)
