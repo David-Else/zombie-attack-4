@@ -1,11 +1,23 @@
 import { DirectTowardsable } from "../components/DirectTowardsable";
-import type { Vector2 } from "../helperFunctions";
+import {
+  calculateRandomPositionAroundPoint,
+  Vector2,
+} from "../helperFunctions";
 import type { BitmapDrawable, GameCanvas } from "../GameCanvas";
 
+export function loadImage(filePath: string): Promise<HTMLImageElement> {
+  const imageElement = new Image();
+  imageElement.src = filePath;
+  return new Promise<HTMLImageElement>((resolve, reject) => {
+    imageElement.onload = () => resolve(imageElement);
+    imageElement.onerror = reject;
+  });
+}
+
 export class Zombie implements BitmapDrawable {
+  static imageCache: HTMLImageElement; // test if needed
   image: HTMLImageElement;
   position;
-  target;
   velocity;
   fill = "green";
   rotation = 0;
@@ -14,17 +26,37 @@ export class Zombie implements BitmapDrawable {
 
   constructor(
     position: Vector2,
-    target: Vector2,
     velocity: Vector2,
     image: HTMLImageElement,
-    widthHeight: Vector2
+    widthHeight: Vector2,
+    directTowards: DirectTowardsable
   ) {
     this.image = image;
     this.position = position;
-    this.target = target;
     this.velocity = velocity;
-    this.directTowards = new DirectTowardsable(target, 1);
+    this.directTowards = directTowards;
     this.widthHeight = widthHeight;
+  }
+  static async init(
+    centrePoint: Vector2,
+    screenWidthHeight: Vector2,
+    target: Vector2,
+    velocity: Vector2
+  ): Promise<Zombie> {
+    const [zombieImage] = await Promise.all([
+      loadImage("assets/zombie64-final.png"),
+    ]);
+
+    return new Zombie(
+      calculateRandomPositionAroundPoint(
+        centrePoint, // TODO actual hero position!
+        screenWidthHeight
+      ),
+      velocity,
+      zombieImage,
+      [zombieImage.width, zombieImage.height],
+      new DirectTowardsable(target, 1)
+    );
   }
 
   draw(gC: Readonly<GameCanvas>): void {

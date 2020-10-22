@@ -1,17 +1,43 @@
-import { calculateRandomPositionAroundPoint } from "./helperFunctions";
+// import { calculateRandomPositionAroundPoint } from "./helperFunctions";
 import { Hero } from "./entities/Hero";
 import { Zombie } from "./entities/Zombie";
 import { Texty } from "./entities/Text";
 import { Bullet } from "./entities/Bullet";
 import type { PubSub } from "./EventObserver";
 import type { TextDrawable } from "./GameCanvas";
-import type { Vector2 } from "./helperFunctions";
+import { divideVectors, Vector2 } from "./helperFunctions";
+import levelData from "./levelData.json"; // snowpack creates proxy file
+import { KeyboardInputable } from "./components/KeyboardInputable";
+import { DirectTowardsable } from "./components/DirectTowardsable";
+
+export class GameEntityFactory {
+  public static getHero(
+    level: Readonly<number>,
+    screenCenter: Vector2,
+    bulletFiredPubSub: PubSub<string>
+  ): Hero {
+    return new Hero(screenCenter, new KeyboardInputable(), bulletFiredPubSub);
+  }
+
+  public static getZombie(level: number) {
+    // load zombie image caching for multiple zombies, do this on class?
+  }
+
+  public static getBullet() {}
+
+  public static getOnScreenText(textBox: {
+    variableName: string;
+    variable: number;
+  }) {
+    // we need to send variables for score, bullets left, + other variables in future?
+  }
+}
 
 export function heroFactory(
   position: Vector2,
   bulletFiredPubSub: PubSub<string>
 ): Hero {
-  return new Hero(position, bulletFiredPubSub);
+  return new Hero(position, new KeyboardInputable(), bulletFiredPubSub);
 }
 
 export function bulletFactory({
@@ -25,29 +51,31 @@ export function bulletFactory({
 }
 
 type ZombieFactory = (
-  centrePoint: Vector2,
   screenWidthHeight: Vector2,
   target: Vector2,
-  velocity: Vector2,
-  image: HTMLImageElement
-) => Zombie;
+  velocity: Vector2
+) => Zombie; // aaargggh what is a Promise<Zombie>
 
-export const zombieFactory: ZombieFactory = (
-  centrePoint,
-  screenWidthHeight,
-  target,
-  velocity,
-  image
-) => {
-  const zombie = new Zombie(
-    calculateRandomPositionAroundPoint(
-      centrePoint, // TODO actual hero position!
-      screenWidthHeight
-    ),
+export const zombieFactory = async (
+  screenWidthHeight: Vector2,
+  target: Vector2,
+  velocity: Vector2
+): Promise<Zombie> => {
+  // const zombie = new Zombie(
+  //   calculateRandomPositionAroundPoint(
+  //     centrePoint, // TODO actual hero position!
+  //     screenWidthHeight
+  //   ),
+  //   velocity,
+  //   image,
+  //   [image.width, image.height],
+  //   new DirectTowardsable(target, 1)
+  // );
+  const zombie = await Zombie.init(
+    divideVectors(screenWidthHeight, [2, 2]),
+    screenWidthHeight,
     target,
-    velocity,
-    image,
-    [image.width, image.height]
+    velocity
   );
   return zombie;
 };

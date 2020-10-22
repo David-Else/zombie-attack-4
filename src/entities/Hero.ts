@@ -1,20 +1,24 @@
+import type { KeyboardInputable } from "../components/KeyboardInputable";
 import type { PubSub } from "../EventObserver";
 import type { GameCanvas, VectorDrawable } from "../GameCanvas";
 import type { Vector2 } from "../helperFunctions";
-import { KeyboardInputable } from "../components/KeyboardInputable";
 
 export class Hero implements VectorDrawable {
   readonly position;
   readonly velocity: Vector2 = [0, 0];
   rotation = 0;
-  readonly fill = "red";
+  readonly fillStyle = "red";
   readonly widthHeight: Vector2 = [65, 25];
   bulletFiredPubSub;
   private readonly keyboardInput;
 
-  constructor(position: Vector2, bulletFiredPubSub: PubSub<string>) {
+  constructor(
+    position: Vector2,
+    keyboardInput: KeyboardInputable,
+    bulletFiredPubSub: PubSub<string>
+  ) {
     this.position = position;
-    this.keyboardInput = new KeyboardInputable();
+    this.keyboardInput = keyboardInput;
     this.bulletFiredPubSub = bulletFiredPubSub;
     // bulletFiredPubSub.subscribe((message: string) => this.sayHello(message));
   }

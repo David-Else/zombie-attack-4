@@ -1,6 +1,5 @@
 import { GameCanvas } from "./GameCanvas";
 import { World } from "./World";
-import levelData from "./levelData.json"; // snowpack creates proxy file
 
 const ratio = 4 / 3;
 export const gameCanvas = new GameCanvas(
@@ -12,22 +11,12 @@ export const gameCanvas = new GameCanvas(
       [window.innerWidth, window.innerWidth / ratio]
 );
 
-function loadImage(filePath: string): Promise<HTMLImageElement> {
-  const imageElement = new Image();
-  imageElement.src = filePath;
-  return new Promise<HTMLImageElement>((resolve, reject) => {
-    imageElement.onload = () => resolve(imageElement);
-    imageElement.onerror = reject;
-  });
-}
-
-async function main() {
-  const [zombieImage] = await Promise.all([
-    loadImage("assets/zombie64-final.png"),
-  ]);
+function main() {
+  // const [zombieImage] = await Promise.all([
+  //   loadImage("assets/zombie64-final.png"),
+  // ]);
   const world = new World(gameCanvas, {
-    numberOfZombies: levelData.level1.zombies,
-    zombieImage,
+    numberOfZombies: 10,
   });
   /**
    * Game loop
@@ -48,6 +37,4 @@ async function main() {
   gameLoop();
 }
 // this is not optimal, read up on promises
-main().catch(() => {
-  throw new Error("hello i am an error");
-});
+main();

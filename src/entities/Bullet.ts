@@ -6,7 +6,7 @@ export class Bullet implements VectorDrawable {
   position;
   velocity;
   rotation;
-  readonly fill = "black";
+  readonly fillStyle = "black";
   readonly widthHeight: Vector2 = [5, 15];
   constructor({
     position,

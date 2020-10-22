@@ -2,7 +2,7 @@ import type { Vector2 } from "./helperFunctions";
 import type { Entity } from "./World";
 
 export interface VectorDrawable extends Entity {
-  readonly fill: string;
+  readonly fillStyle: CanvasFillStrokeStyles["fillStyle"];
 }
 export interface BitmapDrawable extends Entity {
   readonly image: HTMLImageElement;
@@ -59,7 +59,7 @@ export class GameCanvas {
     // rotate the rect
     this.ctx.rotate(entity.rotation * (Math.PI / 180));
     // draw the rect on the transformed context
-    this.ctx.fillStyle = entity.fill;
+    this.ctx.fillStyle = entity.fillStyle;
     this.ctx.fillRect(
       entity.widthHeight[0] / -2,
       entity.widthHeight[1] / -2,

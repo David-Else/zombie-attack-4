@@ -4,6 +4,7 @@ import {
   zombieFactory,
   bulletFactory,
   textFactory,
+  GameEntityFactory,
 } from "./factories";
 import type { GameCanvas } from "./GameCanvas";
 import { PubSub } from "./EventObserver";
@@ -42,65 +43,83 @@ function checkCollision(entity1: Entity, entity2: Entity): boolean {
     bottom <= otherTop
   );
 }
-
+/**
+ * The World stores all the game entities and the pubsub message bus
+ * It contains methods to add/remove entities, check for collisions
+ * and take actions when collisons happen
+ *
+ * Each type of event has its own pubsub object, and these are composed into the
+ * entities that need access to data outside of themselves
+ */
 export class World {
-  entities;
+  gameCanvas;
+  level = 1;
+  entities: Map<EntityKeys, Entity[]>;
   bulletFiredPubSub;
   zombieDiesPubSub;
 
   constructor(
     gameCanvas: Readonly<GameCanvas>,
-    options: { numberOfZombies: number; zombieImage: HTMLImageElement }
+    options: { numberOfZombies: number }
   ) {
+    this.gameCanvas = gameCanvas;
     // Create PubSub event buses, they will be injected into entities that need them
     this.bulletFiredPubSub = new PubSub<string>();
     this.zombieDiesPubSub = new PubSub<string>();
     // Subscribe to any that need access to World scope
     this.bulletFiredPubSub.subscribe(() => this.addBullet());
 
-    this.entities = new Map<EntityKeys, Entity[]>([
-      [
-        "hero",
-        createMultiple(1, () =>
-          heroFactory(gameCanvas.getMiddle(), this.bulletFiredPubSub)
-        ),
-      ],
-      [
-        "zombies",
-        createMultiple(options.numberOfZombies, () =>
-          zombieFactory(
-            gameCanvas.getMiddle(),
-            gameCanvas.getWidthHeight(),
-            gameCanvas.getMiddle(), // TODO SHOULD be hero.position somehow
-            [0, 0],
-            options.zombieImage
-          )
-        ),
-      ],
+    this.entities = new Map([
+      ["hero", []],
+      ["zombies", []],
       ["bullets", []],
-      [
-        "text",
-        createMultiple(1, () =>
-          textFactory({
-            position: [190, 50],
-            velocity: [0, 0],
-            rotation: 0,
-            text: `Score:
-    Bullets left:`,
-            textAlignment: "right",
-            fillStyle: "serif",
-            font: "serif",
-            fontSize: 32,
-            widthHeight: [0, 100],
-          })
-        ),
-      ],
+      ["text", []],
     ]);
+    this.addHero();
+    this.addZombies();
+    this.addText();
   }
 
-  getEntity(entityKey: EntityKeys, index: number): Entity | undefined {
-    const result = this.entities.get(entityKey)?.[index];
-    return result;
+  addHero(): void {
+    if (this.entities.get("hero")) {
+      this.entities.get("hero")?.push(
+        heroFactory(
+          this.gameCanvas.getMiddle(), // maybe inject this!
+          this.bulletFiredPubSub
+        )
+      );
+    }
+  }
+
+  addZombies(): void {
+    if (this.entities.get("zombies")) {
+      createMultiple(10, () =>
+        zombieFactory(
+          this.gameCanvas.getWidthHeight(),
+          this.gameCanvas.getMiddle(), // TODO SHOULD be hero.position somehow
+          [0, 0]
+        )
+      );
+    }
+  }
+
+  addText(): void {
+    if (this.entities.get("text")) {
+      createMultiple(1, () =>
+        textFactory({
+          position: [190, 50],
+          velocity: [0, 0],
+          rotation: 0,
+          text: `Score:
+Bullets left:`,
+          textAlignment: "right",
+          fillStyle: "serif",
+          font: "serif",
+          fontSize: 32,
+          widthHeight: [0, 100],
+        })
+      );
+    }
   }
 
   addBullet(): void {
@@ -114,6 +133,11 @@ export class World {
         })
       );
     }
+  }
+
+  getEntity(entityKey: EntityKeys, index: number): Entity | undefined {
+    const result = this.entities.get(entityKey)?.[index];
+    return result;
   }
 
   deleteEntity(entity: EntityKeys, index: number): void {
@@ -161,3 +185,44 @@ export class World {
     this.deleteEntity("hero", heroIndex);
   };
 }
+
+// [
+//   [
+//     "hero",
+//     createMultiple(1, () =>
+//       GameEntityFactory.getHero(
+//         this.level,
+//         gameCanvas.getMiddle(),
+//         this.bulletFiredPubSub
+//       )
+//     ),
+//   ],
+//   [
+//     "zombies",
+//     createMultiple(options.numberOfZombies, () =>
+//       zombieFactory(
+//         gameCanvas.getWidthHeight(),
+//         gameCanvas.getMiddle(), // TODO SHOULD be hero.position somehow
+//         [0, 0]
+//       )
+//     ),
+//   ],
+//   ["bullets", []],
+//   [
+//     "text",
+//     createMultiple(1, () =>
+//       textFactory({
+//         position: [190, 50],
+//         velocity: [0, 0],
+//         rotation: 0,
+//         text: `Score:
+// Bullets left:`,
+//         textAlignment: "right",
+//         fillStyle: "serif",
+//         font: "serif",
+//         fontSize: 32,
+//         widthHeight: [0, 100],
+//       })
+//     ),
+//   ],
+// ]
