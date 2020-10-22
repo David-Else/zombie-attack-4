@@ -10,7 +10,7 @@ import type { GameCanvas } from "./GameCanvas";
 import { PubSub } from "./EventObserver";
 import type { Zombie } from "./entities/Zombie";
 
-type EntityKeys = "hero" | "zombies" | "bullets" | "text";
+// type EntityKeys = "hero" | "zombies" | "bullets" | "text";
 
 export interface Entity {
   position: Vector2;
@@ -44,6 +44,10 @@ function checkCollision(entity1: Entity, entity2: Entity): boolean {
     bottom <= otherTop
   );
 }
+
+const EntityKeys = ["hero", "zombies", "bullets", "text"] as const;
+type EntityKey = typeof EntityKeys[number];
+
 /**
  * The World stores all the game entities and the pubsub message bus
  * It contains methods to add/remove entities, check for collisions
@@ -67,12 +71,12 @@ export class World {
     // Subscribe to any that need access to World scope
     this.bulletFiredPubSub.subscribe(() => this.addBullet());
 
-    this.entities = new Map<EntityKeys, Entity[]>([
-      ["hero", []],
-      ["zombies", []],
-      ["bullets", []],
-      ["text", []],
-    ]);
+    // https://www.reddit.com/r/typescript/comments/jfzkor/how_can_i_get_the_keys_from_a_mapkeys_iterator_as/
+    const entities = new Map<EntityKey, Entity[]>(
+      EntityKeys.map((k) => [k, []])
+    );
+
+    this.entities = entities;
   }
 
   addHero(): void {
@@ -130,12 +134,12 @@ Bullets left:`,
     }
   }
 
-  getEntity(entityKey: EntityKeys, index: number): Entity | undefined {
+  getEntity(entityKey: EntityKey, index: number): Entity | undefined {
     const result = this.entities.get(entityKey)?.[index];
     return result;
   }
 
-  deleteEntity(entity: EntityKeys, index: number): void {
+  deleteEntity(entity: EntityKey, index: number): void {
     this.entities.get(entity)?.splice(index, 1);
   }
 
