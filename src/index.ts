@@ -18,6 +18,9 @@ function main() {
   const world = new World(gameCanvas, {
     numberOfZombies: 10,
   });
+  world.addHero();
+  world.addZombies();
+  world.addText();
   /**
    * Game loop
    */

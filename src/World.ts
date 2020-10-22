@@ -8,6 +8,7 @@ import {
 } from "./factories";
 import type { GameCanvas } from "./GameCanvas";
 import { PubSub } from "./EventObserver";
+import type { Zombie } from "./entities/Zombie";
 
 type EntityKeys = "hero" | "zombies" | "bullets" | "text";
 
@@ -54,7 +55,7 @@ function checkCollision(entity1: Entity, entity2: Entity): boolean {
 export class World {
   gameCanvas;
   level = 1;
-  entities: Map<EntityKeys, Entity[]>;
+  entities;
   bulletFiredPubSub;
   zombieDiesPubSub;
 
@@ -69,15 +70,12 @@ export class World {
     // Subscribe to any that need access to World scope
     this.bulletFiredPubSub.subscribe(() => this.addBullet());
 
-    this.entities = new Map([
+    this.entities = new Map<EntityKeys, Entity[]>([
       ["hero", []],
       ["zombies", []],
       ["bullets", []],
       ["text", []],
     ]);
-    this.addHero();
-    this.addZombies();
-    this.addText();
   }
 
   addHero(): void {
@@ -91,10 +89,10 @@ export class World {
     }
   }
 
-  addZombies(): void {
+  async addZombies(): Promise<void> {
     if (this.entities.get("zombies")) {
-      createMultiple(10, () =>
-        zombieFactory(
+      this.entities.get("zombies")?.push(
+        await zombieFactory(
           this.gameCanvas.getWidthHeight(),
           this.gameCanvas.getMiddle(), // TODO SHOULD be hero.position somehow
           [0, 0]
