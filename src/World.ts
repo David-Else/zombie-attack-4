@@ -59,10 +59,7 @@ export class World {
   bulletFiredPubSub;
   zombieDiesPubSub;
 
-  constructor(
-    gameCanvas: Readonly<GameCanvas>,
-    options: { numberOfZombies: number }
-  ) {
+  constructor(gameCanvas: Readonly<GameCanvas>) {
     this.gameCanvas = gameCanvas;
     // Create PubSub event buses, they will be injected into entities that need them
     this.bulletFiredPubSub = new PubSub<string>();
@@ -103,12 +100,12 @@ export class World {
 
   addText(): void {
     if (this.entities.get("text")) {
-      createMultiple(1, () =>
+      this.entities.get("text")?.push(
         textFactory({
           position: [190, 50],
           velocity: [0, 0],
           rotation: 0,
-          text: `Score:
+          text: `Level: ${this.level}
 Bullets left:`,
           textAlignment: "right",
           fillStyle: "serif",

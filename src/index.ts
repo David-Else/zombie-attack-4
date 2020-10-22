@@ -15,11 +15,9 @@ function main() {
   // const [zombieImage] = await Promise.all([
   //   loadImage("assets/zombie64-final.png"),
   // ]);
-  const world = new World(gameCanvas, {
-    numberOfZombies: 10,
-  });
+  const world = new World(gameCanvas);
   world.addHero();
-  world.addZombies();
+  world.addZombies().catch(() => {}); // add error system
   world.addText();
   /**
    * Game loop
