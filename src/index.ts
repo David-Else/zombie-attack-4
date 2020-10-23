@@ -5,7 +5,6 @@ import {
   zombieFactory,
 } from "./factories";
 import { GameCanvas } from "./GameCanvas";
-import { World } from "./World";
 import { PubSub } from "./EventObserver";
 import { NewWorld } from "./newWorld";
 import { calculateCenter } from "./helperFunctions";
@@ -22,14 +21,6 @@ export const gameCanvas = new GameCanvas(
 );
 
 function main() {
-  // const [zombieImage] = await Promise.all([
-  //   loadImage("assets/zombie64-final.png"),
-  // ]);
-  const world = new World(gameCanvas);
-  world.addHero();
-  world.addZombies().catch(() => {}); // add error system
-  world.addText();
-
   const EntityKeys = ["hero", "zombies", "bullets", "text"] as const;
   type EntityKey = typeof EntityKeys[number]; // why can't i export?
 
@@ -93,7 +84,6 @@ Bullets left:`,
     requestAnimationFrame(gameLoop);
     gameCanvas.clearScreen();
     newWorld.updateDrawEntities(gameCanvas);
-    world.checkCollision();
     checkCollision(newWorld);
   }
 
