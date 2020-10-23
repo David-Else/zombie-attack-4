@@ -31,7 +31,7 @@ function main() {
   world.addText();
 
   const EntityKeys = ["hero", "zombies", "bullets", "text"] as const;
-  type EntityKey = typeof EntityKeys[number];
+  type EntityKey = typeof EntityKeys[number]; // why can't i export?
 
   const newWorld = new NewWorld(EntityKeys.map((x) => x));
   const bulletFiredPubSub = new PubSub<string>();
