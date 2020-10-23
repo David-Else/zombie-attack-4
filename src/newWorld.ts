@@ -1,4 +1,14 @@
-type Entity = { name: string };
+import type { GameCanvas } from "./GameCanvas";
+import type { Vector2 } from "./helperFunctions";
+
+export interface Entity {
+  position: Vector2;
+  velocity: Vector2;
+  widthHeight: Vector2;
+  rotation: number;
+  update: () => void;
+  draw: (gC: Readonly<GameCanvas>) => void;
+}
 
 /**
  * World holds on-screen entities and current game state
@@ -10,7 +20,8 @@ type Entity = { name: string };
  *
  * @param keysToCreateMap list of key names for entity groups to store
  */
-class Test<Key> {
+export class NewWorld<Key> {
+  level = 1;
   private readonly entities;
 
   constructor(keysToCreateMap: Key[]) {
@@ -19,45 +30,30 @@ class Test<Key> {
     );
   }
 
-  getEntity = (key: Key, index: number) => this.entities.get(key)?.[index];
+  // getEntities = () => this.entities;
+  getEntityGroup = (key: Key): Entity[] | undefined => this.entities.get(key);
+  getEntity = (key: Key, index: number): Entity | undefined =>
+    this.entities.get(key)?.[index];
 
-  getEntityGroup = (key: Key) => this.entities.get(key);
-
-  pushEntity = (key: Key, entity: Entity) => {
+  pushEntity = (key: Key, entity: Entity): void => {
     this.entities.get(key)?.push(entity);
   };
 
-  deleteEntity(key: Key, index: number) {
+  deleteEntity(key: Key, index: number): void {
     this.entities.get(key)?.splice(index, 1);
+  }
+
+  updateDrawEntities(gameCanvas: GameCanvas): void {
+    this.entities.forEach((group) => {
+      group.forEach((entity) => {
+        entity.update();
+        entity.draw(gameCanvas);
+      });
+    });
   }
 }
 
-const EntityKeys = ["hero", "zombies", "bullets", "text"] as const;
-type EntityKey = typeof EntityKeys[number];
+// const EntityKeys = ["hero", "zombies", "bullets", "text"] as const;
+// type EntityKey = typeof EntityKeys[number];
 
-const test = new Test(EntityKeys.map((x) => x));
-
-//
-//
-// TEST
-//
-//
-// ????
-
-test.pushEntity("bullets", { name: "a ha!" });
-test.pushEntity("bullets", { name: "ho ho!" });
-test.getEntityGroup("bullets"); // ?
-
-console.log(test.getEntityGroup("bullets"));
-
-//
-//
-// HOW
-//
-//
-// ????
-const b = EntityKeys.map((x) => x as EntityKey);
-const v = EntityKeys;
-
-console.log(b);
-console.log(v);
+// const test = new NewWorld(EntityKeys.map((x) => x));
