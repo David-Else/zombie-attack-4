@@ -1,7 +1,7 @@
-import type { Entity } from "../World";
 import { addVectors } from "../helperFunctions";
 
 import type { Vector2 } from "../helperFunctions";
+import type { Entity } from "../newWorld";
 
 export class DirectTowardsable {
   targetPosition;

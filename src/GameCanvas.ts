@@ -1,5 +1,5 @@
 import type { Vector2 } from "./helperFunctions";
-import type { Entity } from "./World";
+import type { Entity } from "./newWorld";
 
 export interface VectorDrawable extends Entity {
   readonly fillStyle: CanvasFillStrokeStyles["fillStyle"];

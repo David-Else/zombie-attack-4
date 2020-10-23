@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import type { NewWorld } from "./newWorld";
-import type { Entity } from "./World";
+import type { Entity, NewWorld } from "./newWorld";
 
 // these need to be imported or send via a generic
 const EntityKeys = ["hero", "zombies", "bullets", "text"] as const;

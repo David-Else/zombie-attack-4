@@ -1,4 +1,4 @@
-import type { Entity } from "./World";
+import type { Entity } from "./newWorld";
 
 export type Vector2 = [number, number];
 

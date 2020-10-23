@@ -1,14 +1,14 @@
-import { calculateCenter, createMultiple, Vector2 } from "./helperFunctions";
+import { calculateCenter, createMultiple, Vector2 } from "../src/helperFunctions";
 import {
   heroFactory,
   zombieFactory,
   bulletFactory,
   textFactory,
   GameEntityFactory,
-} from "./factories";
-import type { GameCanvas } from "./GameCanvas";
-import { PubSub } from "./EventObserver";
-import type { Zombie } from "./entities/Zombie";
+} from "../src/factories";
+import type { GameCanvas } from "../src/GameCanvas";
+import { PubSub } from "../src/EventObserver";
+import type { Zombie } from "../src/entities/Zombie";
 
 // type EntityKeys = "hero" | "zombies" | "bullets" | "text";
 
@@ -56,7 +56,7 @@ type EntityKey = typeof EntityKeys[number];
  * Each type of event has its own pubsub object, and these are composed into the
  * entities that need access to data outside of themselves
  */
-export class World {
+class World {
   gameCanvas;
   level = 1;
   entities;
