@@ -83,8 +83,11 @@ Bullets left:`,
   function gameLoop(): void {
     requestAnimationFrame(gameLoop);
     gameCanvas.clearScreen();
-    newWorld.updateDrawEntities(gameCanvas);
     checkCollision(newWorld);
+    newWorld.getAllEntities().forEach((entity) => {
+      entity.update();
+      entity.draw(gameCanvas);
+    });
   }
 
   gameLoop();
