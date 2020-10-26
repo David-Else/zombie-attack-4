@@ -1,9 +1,13 @@
-import { calculateCenter, createMultiple, Vector2 } from "../src/helperFunctions";
+import {
+  calculateCenter,
+  createMultiple,
+  Vector2,
+} from "../src/helperFunctions";
 import {
   heroFactory,
   zombieFactory,
   bulletFactory,
-  textFactory,
+  levelTextFactory,
   GameEntityFactory,
 } from "../src/factories";
 import type { GameCanvas } from "../src/GameCanvas";
@@ -105,7 +109,7 @@ class World {
   addText(): void {
     if (this.entities.get("text")) {
       this.entities.get("text")?.push(
-        textFactory({
+        levelTextFactory({
           position: [190, 50],
           velocity: [0, 0],
           rotation: 0,

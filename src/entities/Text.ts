@@ -12,16 +12,16 @@ export class Texty implements TextDrawable {
   fontSize;
   widthHeight;
 
-  constructor(text: TextFactory) {
-    this.position = text.position;
-    this.velocity = text.velocity;
-    this.text = text.text;
-    this.textAlignment = text.textAlignment;
-    this.fillStyle = text.fillStyle;
-    this.rotation = text.rotation;
-    this.font = text.font;
-    this.fontSize = text.fontSize;
-    this.widthHeight = text.widthHeight;
+  constructor(text: string, textObj: TextFactory) {
+    this.text = text;
+    this.position = textObj.position;
+    this.velocity = textObj.velocity;
+    this.textAlignment = textObj.textAlignment;
+    this.fillStyle = textObj.fillStyle;
+    this.rotation = textObj.rotation;
+    this.font = textObj.font;
+    this.fontSize = textObj.fontSize;
+    this.widthHeight = textObj.widthHeight;
   }
 
   draw(gC: Readonly<GameCanvas>): void {

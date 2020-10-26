@@ -80,6 +80,16 @@ export const zombieFactory = async (
   return zombie;
 };
 
-export type TextFactory = Omit<TextDrawable, "update" | "draw">;
+// export type TextFactory = Omit<TextDrawable, "update" | "draw" | "text">;
 
-export const textFactory = (textObj: TextFactory): Texty => new Texty(textObj);
+export const levelTextFactory = (text: string): Texty =>
+  new Texty(text, {
+    position: [190, 50],
+    velocity: [0, 0],
+    rotation: 0,
+    textAlignment: "right",
+    fillStyle: "serif",
+    font: "serif",
+    fontSize: 32,
+    widthHeight: [0, 100],
+  });
