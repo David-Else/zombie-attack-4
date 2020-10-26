@@ -1,6 +1,6 @@
 import type { Entity } from "./newWorld";
 
-export type Vector2 = [number, number];
+export type Vector2 = [x: number, y: number];
 
 export const createMultiple = <T>(
   numberOfClasses: number,

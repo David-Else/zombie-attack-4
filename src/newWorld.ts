@@ -21,7 +21,7 @@ export class NewWorld<Key> {
   level = 1;
   private readonly entities;
 
-  constructor(entityGroupNames: Key[]) {
+  constructor(entityGroupNames: readonly Key[]) {
     this.entities = new Map<Key, Entity[]>(
       entityGroupNames.map((key) => [key, []])
     );

@@ -8,12 +8,9 @@ const EntityKeys = ["hero", "zombies", "bullets", "text"] as const;
 type EntityKey = typeof EntityKeys[number];
 
 /**
- * =============================================================================
  * Check collision between different groups to save CPU of checking all entities
- * =============================================================================
  */
 export function checkCollision(world: NewWorld<EntityKey>): void {
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
   checkIfGroupsColliding(
     world.getEntityGroup("zombies"), // maybe add what checks what in data in enteties?!
     world.getEntityGroup("bullets"),
@@ -29,9 +26,7 @@ export function checkCollision(world: NewWorld<EntityKey>): void {
 }
 
 /**
- * =============================================================================
  * Axis-aligned bounding boxes, test if two game entities are overlapping or not
- * =============================================================================
  */
 function checkCollisions(entity1: Entity, entity2: Entity): boolean {
   const left = entity1.position[0];

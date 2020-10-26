@@ -2,13 +2,13 @@ devDependencies:
   '@snowpack/plugin-run-script': 2.1.7
   '@snowpack/plugin-typescript': 1.0.2_typescript@4.0.3
   '@types/snowpack-env': 2.3.0
-  '@typescript-eslint/eslint-plugin': 4.5.0_eslint@7.11.0+typescript@4.0.3
-  eslint: 7.11.0
-  eslint-config-airbnb-typescript: 12.0.0_7eba8f4661a51073f1cf799a4bca2b59
-  eslint-config-prettier: 6.13.0_eslint@7.11.0
-  eslint-plugin-import: 2.22.1_eslint@7.11.0
+  '@typescript-eslint/eslint-plugin': 4.5.0_eslint@7.12.0+typescript@4.0.3
+  eslint: 7.12.0
+  eslint-config-airbnb-typescript: 12.0.0_cc4173e65ae37a1796aca64449dc7cc3
+  eslint-config-prettier: 6.14.0_eslint@7.12.0
+  eslint-plugin-import: 2.22.1_eslint@7.12.0
   prettier: 2.1.2
-  snowpack: 2.15.0
+  snowpack: 2.15.1
   tplant: 2.3.6
   typescript: 4.0.3
 lockfileVersion: 5.1
@@ -31,7 +31,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-i6rgnR/YgPEQzZZnbTHHuZdlE8qyoBNalD6F+q4vAFlcMEcqmkoG+mPqJYJCo63qPf74+Y1UZsl3l6f7/RIkmA==
-  /@eslint/eslintrc/0.1.3:
+  /@eslint/eslintrc/0.2.0:
     dependencies:
       ajv: 6.12.6
       debug: 4.2.0
@@ -47,7 +47,7 @@ packages:
     engines:
       node: ^10.12.0 || >=12.0.0
     resolution:
-      integrity: sha512-4YVwPkANLeNtRjMekzux1ci8hIaH5eGKktGqR0d3LWsKNn5B2X/1Z6Trxy7jQXl9EBGE6Yj02O+t09FMeRllaA==
+      integrity: sha512-+cIGPCBdLCzqxdtwppswP+zTsH9BOIGzAeKfBIbtb4gW/giMlfMwP0HUSFfhzh20f9u8uZ8hOp62+4GPquTbwQ==
   /@nodelib/fs.scandir/2.1.3:
     dependencies:
       '@nodelib/fs.stat': 2.0.3
@@ -80,9 +80,9 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-Uv6h1sT+0DrblvIrolFtbvM1FgWm+/sy4B3pvLp67Zys+thcukzS5ekn7HsZFGpWP4Q3fYJCljbWQE/XivMRLw==
-  /@rollup/plugin-alias/3.1.1_rollup@2.32.0:
+  /@rollup/plugin-alias/3.1.1_rollup@2.32.1:
     dependencies:
-      rollup: 2.32.0
+      rollup: 2.32.1
       slash: 3.0.0
     dev: true
     engines:
@@ -91,16 +91,16 @@ packages:
       rollup: ^1.20.0||^2.0.0
     resolution:
       integrity: sha512-hNcQY4bpBUIvxekd26DBPgF7BT4mKVNDF5tBG4Zi+3IgwLxGYRY0itHs9D0oLVwXM5pvJDWJlBQro+au8WaUWw==
-  /@rollup/plugin-commonjs/15.1.0_rollup@2.32.0:
+  /@rollup/plugin-commonjs/15.1.0_rollup@2.32.1:
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.32.0
+      '@rollup/pluginutils': 3.1.0_rollup@2.32.1
       commondir: 1.0.1
       estree-walker: 2.0.1
       glob: 7.1.6
       is-reference: 1.2.1
       magic-string: 0.25.7
       resolve: 1.18.1
-      rollup: 2.32.0
+      rollup: 2.32.1
     dev: true
     engines:
       node: '>= 8.0.0'
@@ -108,35 +108,35 @@ packages:
       rollup: ^2.22.0
     resolution:
       integrity: sha512-xCQqz4z/o0h2syQ7d9LskIMvBSH4PX5PjYdpSSvgS+pQik3WahkQVNWg3D8XJeYjZoVWnIUQYDghuEMRGrmQYQ==
-  /@rollup/plugin-inject/4.0.2_rollup@2.32.0:
+  /@rollup/plugin-inject/4.0.2_rollup@2.32.1:
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.32.0
+      '@rollup/pluginutils': 3.1.0_rollup@2.32.1
       estree-walker: 1.0.1
       magic-string: 0.25.7
-      rollup: 2.32.0
+      rollup: 2.32.1
     dev: true
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0
     resolution:
       integrity: sha512-TSLMA8waJ7Dmgmoc8JfPnwUwVZgLjjIAM6MqeIFqPO2ODK36JqE0Cf2F54UTgCUuW8da93Mvoj75a6KAVWgylw==
-  /@rollup/plugin-json/4.1.0_rollup@2.32.0:
+  /@rollup/plugin-json/4.1.0_rollup@2.32.1:
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.32.0
-      rollup: 2.32.0
+      '@rollup/pluginutils': 3.1.0_rollup@2.32.1
+      rollup: 2.32.1
     dev: true
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0
     resolution:
       integrity: sha512-yfLbTdNS6amI/2OpmbiBoW12vngr5NW2jCJVZSBEz+H5KfUJZ2M7sDjk0U6GOOdCWFVScShte29o9NezJ53TPw==
-  /@rollup/plugin-node-resolve/9.0.0_rollup@2.32.0:
+  /@rollup/plugin-node-resolve/9.0.0_rollup@2.32.1:
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.32.0
+      '@rollup/pluginutils': 3.1.0_rollup@2.32.1
       '@types/resolve': 1.17.1
       builtin-modules: 3.1.0
       deepmerge: 4.2.2
       is-module: 1.0.0
       resolve: 1.18.1
-      rollup: 2.32.0
+      rollup: 2.32.1
     dev: true
     engines:
       node: '>= 10.0.0'
@@ -144,22 +144,22 @@ packages:
       rollup: ^1.20.0||^2.0.0
     resolution:
       integrity: sha512-gPz+utFHLRrd41WMP13Jq5mqqzHL3OXrfj3/MkSyB6UBIcuNt9j60GCbarzMzdf1VHFpOxfQh/ez7wyadLMqkg==
-  /@rollup/plugin-replace/2.3.3_rollup@2.32.0:
+  /@rollup/plugin-replace/2.3.3_rollup@2.32.1:
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.32.0
+      '@rollup/pluginutils': 3.1.0_rollup@2.32.1
       magic-string: 0.25.7
-      rollup: 2.32.0
+      rollup: 2.32.1
     dev: true
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0
     resolution:
       integrity: sha512-XPmVXZ7IlaoWaJLkSCDaa0Y6uVo5XQYHhiMFzOd5qSv5rE+t/UJToPIOE56flKIxBFQI27ONsxb7dqHnwSsjKQ==
-  /@rollup/pluginutils/3.1.0_rollup@2.32.0:
+  /@rollup/pluginutils/3.1.0_rollup@2.32.1:
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.2.2
-      rollup: 2.32.0
+      rollup: 2.32.1
     dev: true
     engines:
       node: '>= 8.0.0'
@@ -207,17 +207,17 @@ packages:
     dev: true
     resolution:
       integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
-  /@types/node/14.14.0:
+  /@types/node/14.14.2:
     dev: true
     resolution:
-      integrity: sha512-BfbIHP9IapdupGhq/hc+jT5dyiBVZ2DdeC5WwJWQWDb0GijQlzUFAeIQn/2GtvZcd2HVUU7An8felIICFTC2qg==
+      integrity: sha512-jeYJU2kl7hL9U5xuI/BhKPZ4vqGM/OmK6whiFAXVhlstzZhVamWhDSmHyGLIp+RVyuF9/d0dqr2P85aFj4BvJg==
   /@types/parse-json/4.0.0:
     dev: true
     resolution:
       integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
   /@types/resolve/1.17.1:
     dependencies:
-      '@types/node': 14.14.0
+      '@types/node': 14.14.2
     dev: true
     resolution:
       integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==
@@ -225,12 +225,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-wC/zq9A0IhlNyO469UPCOr3XZNTOXeGWiOJig9yWUZ0DkUOVNJinfFqC3vRzmlid6+CSiPw8GLvW/03F2/1vyg==
-  /@typescript-eslint/eslint-plugin/4.5.0_eslint@7.11.0+typescript@4.0.3:
+  /@typescript-eslint/eslint-plugin/4.5.0_eslint@7.12.0+typescript@4.0.3:
     dependencies:
-      '@typescript-eslint/experimental-utils': 4.5.0_eslint@7.11.0+typescript@4.0.3
+      '@typescript-eslint/experimental-utils': 4.5.0_eslint@7.12.0+typescript@4.0.3
       '@typescript-eslint/scope-manager': 4.5.0
       debug: 4.2.0
-      eslint: 7.11.0
+      eslint: 7.12.0
       functional-red-black-tree: 1.0.1
       regexpp: 3.1.0
       semver: 7.3.2
@@ -248,13 +248,13 @@ packages:
         optional: true
     resolution:
       integrity: sha512-mjb/gwNcmDKNt+6mb7Aj/TjKzIJjOPcoCJpjBQC9ZnTRnBt1p4q5dJSSmIqAtsZ/Pff5N+hJlbiPc5bl6QN4OQ==
-  /@typescript-eslint/experimental-utils/4.5.0_eslint@7.11.0+typescript@4.0.3:
+  /@typescript-eslint/experimental-utils/4.5.0_eslint@7.12.0+typescript@4.0.3:
     dependencies:
       '@types/json-schema': 7.0.6
       '@typescript-eslint/scope-manager': 4.5.0
       '@typescript-eslint/types': 4.5.0
       '@typescript-eslint/typescript-estree': 4.5.0_typescript@4.0.3
-      eslint: 7.11.0
+      eslint: 7.12.0
       eslint-scope: 5.1.1
       eslint-utils: 2.1.0
     dev: true
@@ -265,13 +265,13 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-bW9IpSAKYvkqDGRZzayBXIgPsj2xmmVHLJ+flGSoN0fF98pGoKFhbunIol0VF2Crka7z984EEhFi623Rl7e6gg==
-  /@typescript-eslint/parser/4.4.1_eslint@7.11.0+typescript@4.0.3:
+  /@typescript-eslint/parser/4.4.1_eslint@7.12.0+typescript@4.0.3:
     dependencies:
       '@typescript-eslint/scope-manager': 4.4.1
       '@typescript-eslint/types': 4.4.1
       '@typescript-eslint/typescript-estree': 4.4.1_typescript@4.0.3
       debug: 4.2.0
-      eslint: 7.11.0
+      eslint: 7.12.0
       typescript: 4.0.3
     dev: true
     engines:
@@ -635,10 +635,10 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
-  /cjs-module-lexer/0.4.2:
+  /cjs-module-lexer/0.4.3:
     dev: true
     resolution:
-      integrity: sha512-uV69iZhqztkGwmbLrX3gE/XaH2VgYJ8gZYFXrZ0Xo7iyPy9gCW7/C1ISX6avtt3vatIocYJPbCrZRyssl2e8MQ==
+      integrity: sha512-5RLK0Qfs0PNDpEyBXIr3bIT1Muw3ojSlvpw6dAmkUcO0+uTrsBn7GuEIgx40u+OzbCBLDta7nvmud85P4EmTsQ==
   /clean-stack/2.2.0:
     dev: true
     engines:
@@ -667,12 +667,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
-  /commander/6.1.0:
+  /commander/6.2.0:
     dev: true
     engines:
       node: '>= 6'
     resolution:
-      integrity: sha512-wl7PNrYWd2y5mp1OK/LhTlv8Ff4kQJQRXXAvF+uU/TPNiVJUxZLRYGj/B0y/lPGAVcSbJqH2Za/cvHmrPMC8mA==
+      integrity: sha512-zP4jEKbe8SHzKJYQmq8Y9gYjtO/POJLgIdKgV7B9qNmABVFVc+ctqSX6iXh4mCpJfRBOabiZ2YKPg8ciDw6C+Q==
   /commondir/1.0.1:
     dev: true
     resolution:
@@ -689,10 +689,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
-  /confusing-browser-globals/1.0.9:
+  /confusing-browser-globals/1.0.10:
     dev: true
     resolution:
-      integrity: sha512-KbS1Y0jMtyPgIxjO7ZzMAuUpAKMt1SzCL9fsrKsX6b0zJPTaT0SiSPmewwVZg9UAO83HVIlEhZF84LIjZ0lmAw==
+      integrity: sha512-gNld/3lySHwuhaVluJUKLePYirM3QNCKzVxqAdhJII9/WXKVX5PURzMVJspS1jTslSqjeuG4KMVTSouit5YPHA==
   /contains-path/0.1.0:
     dev: true
     engines:
@@ -859,8 +859,8 @@ packages:
       object-inspect: 1.8.0
       object-keys: 1.1.1
       object.assign: 4.1.1
-      string.prototype.trimend: 1.0.1
-      string.prototype.trimstart: 1.0.1
+      string.prototype.trimend: 1.0.2
+      string.prototype.trimstart: 1.0.2
     dev: true
     engines:
       node: '>= 0.4'
@@ -878,8 +878,8 @@ packages:
       object-inspect: 1.8.0
       object-keys: 1.1.1
       object.assign: 4.1.1
-      string.prototype.trimend: 1.0.1
-      string.prototype.trimstart: 1.0.1
+      string.prototype.trimend: 1.0.2
+      string.prototype.trimstart: 1.0.2
     dev: true
     engines:
       node: '>= 0.4'
@@ -899,43 +899,43 @@ packages:
       node: '>= 0.4'
     resolution:
       integrity: sha512-QCOllgZJtaUo9miYBcLChTUaHNjJF3PYs1VidD7AwiEj1kYxKeQTctLAezAOH5ZKRH0g2IgPn6KwB4IT8iRpvA==
-  /esbuild/0.7.17:
+  /esbuild/0.7.21:
     dev: true
     hasBin: true
     requiresBuild: true
     resolution:
-      integrity: sha512-5lO1NBOekZYU8h55SJJUc2dMe8duAwIqOQrIIvawRwbBRoWCmLSsMJmEvdFDITt24pkhu8AN4IKfyflLgaKxbg==
+      integrity: sha512-qEnJdj+6Mdpt5kZwwCqO6PDNXSHNDDOPbnF4pduS3nub1v5GfgZfi8ysZ2DN4Q65WWgx6hz1a237ZETEHZpR0Q==
   /escape-string-regexp/1.0.5:
     dev: true
     engines:
       node: '>=0.8.0'
     resolution:
       integrity: sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
-  /esinstall/0.3.4:
+  /esinstall/0.3.5:
     dependencies:
-      '@rollup/plugin-alias': 3.1.1_rollup@2.32.0
-      '@rollup/plugin-commonjs': 15.1.0_rollup@2.32.0
-      '@rollup/plugin-inject': 4.0.2_rollup@2.32.0
-      '@rollup/plugin-json': 4.1.0_rollup@2.32.0
-      '@rollup/plugin-node-resolve': 9.0.0_rollup@2.32.0
-      '@rollup/plugin-replace': 2.3.3_rollup@2.32.0
-      cjs-module-lexer: 0.4.2
+      '@rollup/plugin-alias': 3.1.1_rollup@2.32.1
+      '@rollup/plugin-commonjs': 15.1.0_rollup@2.32.1
+      '@rollup/plugin-inject': 4.0.2_rollup@2.32.1
+      '@rollup/plugin-json': 4.1.0_rollup@2.32.1
+      '@rollup/plugin-node-resolve': 9.0.0_rollup@2.32.1
+      '@rollup/plugin-replace': 2.3.3_rollup@2.32.1
+      cjs-module-lexer: 0.4.3
       es-module-lexer: 0.3.25
       is-builtin-module: 3.0.0
       kleur: 4.1.3
       mkdirp: 1.0.4
       rimraf: 3.0.2
-      rollup: 2.32.0
+      rollup: 2.32.1
       rollup-plugin-node-polyfills: 0.2.1
       validate-npm-package-name: 3.0.0
     dev: true
     resolution:
-      integrity: sha512-UKlx03ARe6NiZ8IVsWZA4vZiSWBBG/JK7sH7+MiI3uXobY8eMd6tU7j5xjUaQoJ7wpaBq449Zm3Z6LL2BbyV7w==
-  /eslint-config-airbnb-base/14.2.0_b0107ac66144325cec64acec0bc152ec:
+      integrity: sha512-dAz60PnafifmuKGByuONPaFPLuTfhqpzAxgKgxMOaHhOb3zZxoP+TsiGolLEPDliYdHBtZIp7fEFOycUMKlGLg==
+  /eslint-config-airbnb-base/14.2.0_acd551cc6893b451f960bf6aa8597937:
     dependencies:
-      confusing-browser-globals: 1.0.9
-      eslint: 7.11.0
-      eslint-plugin-import: 2.22.1_eslint@7.11.0
+      confusing-browser-globals: 1.0.10
+      eslint: 7.12.0
+      eslint-plugin-import: 2.22.1_eslint@7.12.0
       object.assign: 4.1.1
       object.entries: 1.1.2
     dev: true
@@ -946,12 +946,12 @@ packages:
       eslint-plugin-import: ^2.21.2
     resolution:
       integrity: sha512-Snswd5oC6nJaevs3nZoLSTvGJBvzTfnBqOIArkf3cbyTyq9UD79wOk8s+RiL6bhca0p/eRO6veczhf6A/7Jy8Q==
-  /eslint-config-airbnb-typescript/12.0.0_7eba8f4661a51073f1cf799a4bca2b59:
+  /eslint-config-airbnb-typescript/12.0.0_cc4173e65ae37a1796aca64449dc7cc3:
     dependencies:
-      '@typescript-eslint/eslint-plugin': 4.5.0_eslint@7.11.0+typescript@4.0.3
-      '@typescript-eslint/parser': 4.4.1_eslint@7.11.0+typescript@4.0.3
-      eslint-config-airbnb: 18.2.0_b0107ac66144325cec64acec0bc152ec
-      eslint-config-airbnb-base: 14.2.0_b0107ac66144325cec64acec0bc152ec
+      '@typescript-eslint/eslint-plugin': 4.5.0_eslint@7.12.0+typescript@4.0.3
+      '@typescript-eslint/parser': 4.4.1_eslint@7.12.0+typescript@4.0.3
+      eslint-config-airbnb: 18.2.0_acd551cc6893b451f960bf6aa8597937
+      eslint-config-airbnb-base: 14.2.0_acd551cc6893b451f960bf6aa8597937
     dev: true
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^4.4.1
@@ -960,11 +960,11 @@ packages:
       typescript: '*'
     resolution:
       integrity: sha512-TUCVru1Z09eKnVAX5i3XoNzjcCOU3nDQz2/jQGkg1jVYm+25fKClveziSl16celfCq+npU0MBPW/ZnXdGFZ9lw==
-  /eslint-config-airbnb/18.2.0_b0107ac66144325cec64acec0bc152ec:
+  /eslint-config-airbnb/18.2.0_acd551cc6893b451f960bf6aa8597937:
     dependencies:
-      eslint: 7.11.0
-      eslint-config-airbnb-base: 14.2.0_b0107ac66144325cec64acec0bc152ec
-      eslint-plugin-import: 2.22.1_eslint@7.11.0
+      eslint: 7.12.0
+      eslint-config-airbnb-base: 14.2.0_acd551cc6893b451f960bf6aa8597937
+      eslint-plugin-import: 2.22.1_eslint@7.12.0
       object.assign: 4.1.1
       object.entries: 1.1.2
     dev: true
@@ -978,16 +978,16 @@ packages:
       eslint-plugin-react-hooks: ^4 || ^3 || ^2.3.0 || ^1.7.0
     resolution:
       integrity: sha512-Fz4JIUKkrhO0du2cg5opdyPKQXOI2MvF8KUvN2710nJMT6jaRUpRE2swrJftAjVGL7T1otLM5ieo5RqS1v9Udg==
-  /eslint-config-prettier/6.13.0_eslint@7.11.0:
+  /eslint-config-prettier/6.14.0_eslint@7.12.0:
     dependencies:
-      eslint: 7.11.0
+      eslint: 7.12.0
       get-stdin: 6.0.0
     dev: true
     hasBin: true
     peerDependencies:
       eslint: '>=3.14.1'
     resolution:
-      integrity: sha512-LcT0i0LSmnzqK2t764pyIt7kKH2AuuqKRTtJTdddWxOiUja9HdG5GXBVF2gmCTvVYWVsTu8J2MhJLVGRh+pj8w==
+      integrity: sha512-DbVwh0qZhAC7CNDWcq8cBdK6FcVHiMTKmCypOPWeZkp9hJ8xYwTaWSa6bb6cjfi8KOeJy0e9a8Izxyx+O4+gCQ==
   /eslint-import-resolver-node/0.3.4:
     dependencies:
       debug: 2.6.9
@@ -1004,14 +1004,14 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-6j9xxegbqe8/kZY8cYpcp0xhbK0EgJlg3g9mib3/miLaExuuwc3n5UEfSnU6hWMbT0FAYVvDbL9RrRgpUeQIvA==
-  /eslint-plugin-import/2.22.1_eslint@7.11.0:
+  /eslint-plugin-import/2.22.1_eslint@7.12.0:
     dependencies:
       array-includes: 3.1.1
       array.prototype.flat: 1.2.3
       contains-path: 0.1.0
       debug: 2.6.9
       doctrine: 1.5.0
-      eslint: 7.11.0
+      eslint: 7.12.0
       eslint-import-resolver-node: 0.3.4
       eslint-module-utils: 2.6.0
       has: 1.0.3
@@ -1056,10 +1056,10 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
-  /eslint/7.11.0:
+  /eslint/7.12.0:
     dependencies:
       '@babel/code-frame': 7.10.4
-      '@eslint/eslintrc': 0.1.3
+      '@eslint/eslintrc': 0.2.0
       ajv: 6.12.6
       chalk: 4.1.0
       cross-spawn: 7.0.3
@@ -1100,7 +1100,7 @@ packages:
       node: ^10.12.0 || >=12.0.0
     hasBin: true
     resolution:
-      integrity: sha512-G9+qtYVCHaDi1ZuWzBsOWo2wSwd70TXnU6UHA3cTYHp7gCTXZcpggWFoUVAMRarg68qtPoNfFbzPh+VdOgmwmw==
+      integrity: sha512-n5pEU27DRxCSlOhJ2rO57GDLcNsxO0LPpAbpFdh7xmcDmjmlGUfoyrsB3I7yYdQXO5N3gkSTiDrPSPNFiiirXA==
   /espree/7.3.0:
     dependencies:
       acorn: 7.4.1
@@ -1670,10 +1670,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow==
-  /jsonschema/1.3.0:
+  /jsonschema/1.4.0:
     dev: true
     resolution:
-      integrity: sha512-qg48ckmeeQNPyPAUVIb4Qgmg/U2Kgg5SuEyMs8Z72cnxsw5Ra088U/Foi6sMp/cs7sZ+LNrmvX0Ww+ohE2By0g==
+      integrity: sha512-/YgW6pRMr6M7C+4o8kS+B/2myEpHCrxO4PEWnqJNBFMjn7EWXqlQ4tGwL6xTHeRplwuZmcAncdvfOad1nT2yMw==
   /kleur/4.1.3:
     dev: true
     engines:
@@ -2341,7 +2341,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==
-  /rollup/2.32.0:
+  /rollup/2.32.1:
     dev: true
     engines:
       node: '>=10.0.0'
@@ -2349,7 +2349,7 @@ packages:
     optionalDependencies:
       fsevents: 2.1.3
     resolution:
-      integrity: sha512-0FIG1jY88uhCP2yP4CfvtKEqPDRmsUwfY1kEOOM+DH/KOGATgaIFd/is1+fQOxsvh62ELzcFfKonwKWnHhrqmw==
+      integrity: sha512-Op2vWTpvK7t6/Qnm1TTh7VjEZZkN8RWgf0DHbkKzQBwNf748YhXbozHVefqpPp/Fuyk/PQPAnYsBxAEtlMvpUw==
   /run-parallel/1.1.9:
     dev: true
     resolution:
@@ -2405,7 +2405,7 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-Qu+VC3EwYLldKa1fCxuuvULvSJOKEgk9pi8dZeCVK7TqBfUNTH4sFkk4joj8afVSfAYgJoSOetjx9QWOJ5mYoQ==
-  /snowpack/2.15.0:
+  /snowpack/2.15.1:
     dependencies:
       '@snowpack/plugin-build-script': 2.0.11
       '@snowpack/plugin-run-script': 2.1.7
@@ -2418,8 +2418,8 @@ packages:
       deepmerge: 4.2.2
       detect-port: 1.3.0
       es-module-lexer: 0.3.25
-      esbuild: 0.7.17
-      esinstall: 0.3.4
+      esbuild: 0.7.21
+      esinstall: 0.3.5
       etag: 1.8.1
       execa: 4.0.3
       find-cache-dir: 3.3.1
@@ -2428,7 +2428,7 @@ packages:
       http-proxy: 1.18.1
       httpie: 1.1.2
       isbinaryfile: 4.0.6
-      jsonschema: 1.3.0
+      jsonschema: 1.4.0
       kleur: 4.1.3
       mime-types: 2.1.27
       mkdirp: 1.0.4
@@ -2449,7 +2449,7 @@ packages:
       node: '>=10.19.0'
     hasBin: true
     resolution:
-      integrity: sha512-2T9pqIYc/1RXWQzrkLqyJx9QtQnI1UfkKfJfrnn8qd6u0446Jw6l5+47VcEUQqRoH4TasVsra8tJO4Zw2BKZrg==
+      integrity: sha512-rV+es3chRduZnjQM1WnkgB/gWext+41+CZ5EXTgRXxcXXk5DT6JPn9yivP1+098I1ilmtPYQMB/yGHsWHG8ebA==
   /source-map/0.5.7:
     dev: true
     engines:
@@ -2510,20 +2510,20 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-vafcv6KjVZKSgz06oM/H6GDBrAtz8vdhQakGjFIvNrHA6y3HCF1CInLy+QLq8dTJPQ1b+KDUqDFctkdRW44e1w==
-  /string.prototype.trimend/1.0.1:
+  /string.prototype.trimend/1.0.2:
     dependencies:
       define-properties: 1.1.3
-      es-abstract: 1.17.7
+      es-abstract: 1.18.0-next.1
     dev: true
     resolution:
-      integrity: sha512-LRPxFUaTtpqYsTeNKaFOw3R4bxIzWOnbQ837QfBylo8jIxtcbK/A/sMV7Q+OAV/vWo+7s25pOE10KYSjaSO06g==
-  /string.prototype.trimstart/1.0.1:
+      integrity: sha512-8oAG/hi14Z4nOVP0z6mdiVZ/wqjDtWSLygMigTzAb+7aPEDTleeFf+WrF+alzecxIRkckkJVn+dTlwzJXORATw==
+  /string.prototype.trimstart/1.0.2:
     dependencies:
       define-properties: 1.1.3
-      es-abstract: 1.17.7
+      es-abstract: 1.18.0-next.1
     dev: true
     resolution:
-      integrity: sha512-XxZn+QpvrBI1FOcg6dIpxUPgWCPuNXvMD72aaRaUQv1eD4e/Qy8i/hFTe0BUmD60p/QA6bh1avmuPTfNjqVWRw==
+      integrity: sha512-7F6CdBTl5zyu30BJFdzSTlSlLPwODC23Od+iLoVH8X6+3fvDPPuBVVj9iaB1GOsSTSIgVfsfm27R2FGrAPznWg==
   /strip-ansi/3.0.1:
     dependencies:
       ansi-regex: 2.1.1
@@ -2640,7 +2640,7 @@ packages:
       integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   /tplant/2.3.6:
     dependencies:
-      commander: 6.1.0
+      commander: 6.2.0
       glob: 7.1.6
       plantuml-encoder: 1.4.0
       typescript: 4.0.3
@@ -2793,11 +2793,11 @@ specifiers:
   '@snowpack/plugin-typescript': ^1.0.2
   '@types/snowpack-env': ^2.3.0
   '@typescript-eslint/eslint-plugin': ^4.5.0
-  eslint: ^7.11.0
+  eslint: ^7.12.0
   eslint-config-airbnb-typescript: ^12.0.0
-  eslint-config-prettier: ^6.13.0
+  eslint-config-prettier: ^6.14.0
   eslint-plugin-import: ^2.22.1
   prettier: ^2.1.2
-  snowpack: ^2.15.0
+  snowpack: ^2.15.1
   tplant: ^2.3.6
   typescript: ^4.0.3

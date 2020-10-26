@@ -7,7 +7,7 @@ import {
 import { GameCanvas } from "./GameCanvas";
 import { PubSub } from "./EventObserver";
 import { NewWorld } from "./newWorld";
-import { calculateCenter } from "./helperFunctions";
+import { calculateCenter, createMultiple } from "./helperFunctions";
 import { checkCollision } from "./collisionDetection";
 
 const ratio = 4 / 3;
@@ -27,6 +27,9 @@ function main() {
   const newWorld = new NewWorld(EntityKeys.map((x) => x));
   const bulletFiredPubSub = new PubSub<string>();
 
+  /** Add characters */
+
+  /** Hero */
   if (newWorld.getEntityGroup("hero")) {
     newWorld.getEntityGroup("hero")?.push(
       heroFactory(
@@ -35,7 +38,7 @@ function main() {
       )
     );
   }
-
+  /** Text */
   if (newWorld.getEntityGroup("text")) {
     newWorld.getEntityGroup("text")?.push(
       textFactory({
@@ -52,18 +55,22 @@ Bullets left:`,
       })
     );
   }
+  /** Bullets */
 
-  const hero = newWorld.getEntityGroup("hero");
-  if (hero) {
-    // get possible undefined?
-    newWorld.getEntityGroup("bullets")?.push(
-      bulletFactory({
-        position: calculateCenter(hero[0]),
-        rotation: hero[0].rotation,
-      })
-    );
+  function addBullet() {
+    const hero = newWorld.getEntityGroup("hero");
+    if (hero) {
+      // get possible undefined?
+      newWorld.getEntityGroup("bullets")?.push(
+        bulletFactory({
+          position: calculateCenter(hero[0]),
+          rotation: hero[0].rotation,
+        })
+      );
+    }
   }
 
+  /** Zombies */
   async function makeZombies() {
     if (newWorld.getEntityGroup("zombies")) {
       newWorld.getEntityGroup("zombies")?.push(
@@ -75,8 +82,10 @@ Bullets left:`,
       );
     }
   }
-  makeZombies();
-
+  for (let index = 0; index < 10; index += 1) {
+    makeZombies();
+  }
+  bulletFiredPubSub.subscribe(() => addBullet());
   /**
    * Game loop
    */
