@@ -4,11 +4,8 @@ import { Zombie } from "./entities/Zombie";
 import { Texty } from "./entities/Text";
 import { Bullet } from "./entities/Bullet";
 import type { PubSub } from "./EventObserver";
-import type { TextDrawable } from "./GameCanvas";
 import { divideVectors, Vector2 } from "./helperFunctions";
-import levelData from "./levelData.json"; // snowpack creates proxy file
 import { KeyboardInputable } from "./components/KeyboardInputable";
-import { DirectTowardsable } from "./components/DirectTowardsable";
 
 export class GameEntityFactory {
   public static getHero(
@@ -54,7 +51,7 @@ type ZombieFactory = (
   screenWidthHeight: Vector2,
   target: Vector2,
   velocity: Vector2
-) => Zombie; // aaargggh what is a Promise<Zombie>
+) => Zombie;
 
 export const zombieFactory = async (
   screenWidthHeight: Vector2,

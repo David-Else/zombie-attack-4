@@ -9,6 +9,7 @@ import { PubSub } from "./EventObserver";
 import { NewWorld } from "./newWorld";
 import { calculateCenter } from "./helperFunctions";
 import { checkCollision } from "./collisionDetection";
+import levelData from "./levelData.json"; // snowpack creates proxy file
 
 const ratio = 4 / 3;
 export const gameCanvas = new GameCanvas(
@@ -23,7 +24,10 @@ export const gameCanvas = new GameCanvas(
 function main() {
   const EntityKeys = ["hero", "zombies", "bullets", "text"] as const;
   type EntityKey = typeof EntityKeys[number]; // why can't i export?
-  const newWorld = new NewWorld(EntityKeys.map((x) => x));
+  const newWorld = new NewWorld(
+    EntityKeys.map((x) => x),
+    { level: 1 }
+  );
 
   // Pubsub
   const bulletFiredPubSub = new PubSub<string>();
@@ -68,7 +72,7 @@ function main() {
       )
     );
   }
-  for (let index = 0; index < 10; index += 1) {
+  for (let index = 0; index < levelData.level1.zombies; index += 1) {
     makeZombies();
   }
 

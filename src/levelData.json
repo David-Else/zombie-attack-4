@@ -1,18 +1,22 @@
 {
   "level1": {
-    "zombies": 10,
-    "bullets": 100
+    "zombies": 50,
+    "additionalBullets": 100,
+    "additionalLives": 3
   },
   "level2": {
     "zombies": 20,
-    "bullets": 150
+    "additionalBullets": 150,
+    "additionalLives": 1
   },
   "level3": {
     "zombies": 30,
-    "bullets": 200
+    "additionalBullets": 200,
+    "additionalLives": 1
   },
   "level4": {
     "zombies": 40,
-    "bullets": 250
+    "additionalBullets": 250,
+    "additionalLives": 1
   }
 }

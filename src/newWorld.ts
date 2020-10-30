@@ -18,13 +18,14 @@ export interface Entity {
  * Key: [{Entity}, {Entity}]
  */
 export class NewWorld<Key> {
-  level = 1;
+  level;
   private readonly entities;
 
-  constructor(entityGroupNames: readonly Key[]) {
+  constructor(entityGroupNames: readonly Key[], options: { level: number }) {
     this.entities = new Map<Key, Entity[]>(
       entityGroupNames.map((key) => [key, []])
     );
+    this.level = options.level;
   }
 
   getAllEntities(): Entity[] {
